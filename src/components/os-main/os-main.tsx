@@ -1,5 +1,4 @@
 import { Component, Host, h, ComponentInterface, Element } from '@stencil/core';
-import { SystemController } from '../../controller';
 import interact from 'interactjs';
 
 /**
@@ -14,10 +13,14 @@ import interact from 'interactjs';
   shadow: true,
 })
 export class OsMain implements ComponentInterface {
+  /**
+   * 当前组件DOM实例
+   *
+   * @type {HTMLOsMainElement}
+   * @memberof OsMain
+   */
   @Element()
-  el;
-
-  sys = new SystemController();
+  el: HTMLOsMainElement;
 
   componentDidLoad() {
     interact(this.el);
