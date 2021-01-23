@@ -29,6 +29,7 @@
     "rxjs": "^6.6.3"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-eslint": "^8.0.1",
     "@stencil/sass": "^1.4.1",
     "@types/jest": "^26.0.20",

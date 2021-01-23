@@ -1,4 +1,6 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, ComponentInterface, Element } from '@stencil/core';
+import { SystemController } from '../../controller';
+import interact from 'interactjs';
 
 /**
  * OS主入口
@@ -11,7 +13,16 @@ import { Component, Host, h } from '@stencil/core';
   styleUrl: 'os-main.scss',
   shadow: true,
 })
-export class OsMain {
+export class OsMain implements ComponentInterface {
+  @Element()
+  el;
+
+  sys = new SystemController();
+
+  componentDidLoad() {
+    interact(this.el);
+  }
+
   render() {
     return (
       <Host class='os-main'>

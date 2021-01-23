@@ -1,5 +1,6 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+import commonjs from '@rollup/plugin-commonjs';
 import eslint from '@rollup/plugin-eslint';
 import NodePolyfills from 'rollup-plugin-node-polyfills';
 
@@ -10,7 +11,7 @@ export const config: Config = {
   globalStyle: './src/styles/os.bundle.scss',
   plugins: [sass()],
   rollupPlugins: {
-    before: [eslint(), NodePolyfills()],
+    before: [commonjs(), eslint(), NodePolyfills()],
   },
   bundles: [{ components: ['os-main', 'os-desktop'] }],
   outputTargets: [
