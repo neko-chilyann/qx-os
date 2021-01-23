@@ -6,32 +6,45 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface QxDesktop {
+    interface OsDesktop {
+    }
+    interface OsMain {
     }
 }
 declare global {
-    interface HTMLQxDesktopElement extends Components.QxDesktop, HTMLStencilElement {
+    interface HTMLOsDesktopElement extends Components.OsDesktop, HTMLStencilElement {
     }
-    var HTMLQxDesktopElement: {
-        prototype: HTMLQxDesktopElement;
-        new (): HTMLQxDesktopElement;
+    var HTMLOsDesktopElement: {
+        prototype: HTMLOsDesktopElement;
+        new (): HTMLOsDesktopElement;
+    };
+    interface HTMLOsMainElement extends Components.OsMain, HTMLStencilElement {
+    }
+    var HTMLOsMainElement: {
+        prototype: HTMLOsMainElement;
+        new (): HTMLOsMainElement;
     };
     interface HTMLElementTagNameMap {
-        "qx-desktop": HTMLQxDesktopElement;
+        "os-desktop": HTMLOsDesktopElement;
+        "os-main": HTMLOsMainElement;
     }
 }
 declare namespace LocalJSX {
-    interface QxDesktop {
+    interface OsDesktop {
+    }
+    interface OsMain {
     }
     interface IntrinsicElements {
-        "qx-desktop": QxDesktop;
+        "os-desktop": OsDesktop;
+        "os-main": OsMain;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "qx-desktop": LocalJSX.QxDesktop & JSXBase.HTMLAttributes<HTMLQxDesktopElement>;
+            "os-desktop": LocalJSX.OsDesktop & JSXBase.HTMLAttributes<HTMLOsDesktopElement>;
+            "os-main": LocalJSX.OsMain & JSXBase.HTMLAttributes<HTMLOsMainElement>;
         }
     }
 }

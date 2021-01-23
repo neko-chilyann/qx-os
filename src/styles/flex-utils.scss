@@ -1,0 +1,99 @@
+// Flex Utilities
+// --------------------------------------------------
+// Creates flex classes to align flex containers
+// and items
+
+// Align Self
+// --------------------------------------------------
+
+.os-align-self-start {
+  align-self: flex-start !important;
+}
+
+.os-align-self-end {
+  align-self: flex-end !important;
+}
+
+.os-align-self-center {
+  align-self: center !important;
+}
+
+.os-align-self-stretch {
+  align-self: stretch !important;
+}
+
+.os-align-self-baseline {
+  align-self: baseline !important;
+}
+
+.os-align-self-auto {
+  align-self: auto !important;
+}
+
+
+// Flex Wrap
+// --------------------------------------------------
+
+.os-wrap {
+  flex-wrap: wrap !important;
+}
+
+.os-nowrap {
+  flex-wrap: nowrap !important;
+}
+
+.os-wrap-reverse {
+  flex-wrap: wrap-reverse !important;
+}
+
+
+// Justify Content
+// --------------------------------------------------
+
+.os-justify-content-start {
+  justify-content: flex-start !important;
+}
+
+.os-justify-content-center {
+  justify-content: center !important;
+}
+
+.os-justify-content-end {
+  justify-content: flex-end !important;
+}
+
+.os-justify-content-around {
+  justify-content: space-around !important;
+}
+
+.os-justify-content-between {
+  justify-content: space-between !important;
+}
+
+.os-justify-content-evenly {
+  justify-content: space-evenly !important;
+}
+
+
+// Align Items
+// --------------------------------------------------
+
+.os-align-items-start {
+  align-items: flex-start !important;
+}
+
+.os-align-items-center {
+  align-items: center !important;
+}
+
+.os-align-items-end {
+  align-items: flex-end !important;
+}
+
+.os-align-items-stretch {
+  align-items: stretch !important;
+}
+
+.os-align-items-baseline {
+  align-items: baseline !important;
+}
