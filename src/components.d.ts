@@ -10,6 +10,8 @@ export namespace Components {
     }
     interface OsMain {
     }
+    interface OsWindow {
+    }
 }
 declare global {
     interface HTMLOsDesktopElement extends Components.OsDesktop, HTMLStencilElement {
@@ -24,9 +26,16 @@ declare global {
         prototype: HTMLOsMainElement;
         new (): HTMLOsMainElement;
     };
+    interface HTMLOsWindowElement extends Components.OsWindow, HTMLStencilElement {
+    }
+    var HTMLOsWindowElement: {
+        prototype: HTMLOsWindowElement;
+        new (): HTMLOsWindowElement;
+    };
     interface HTMLElementTagNameMap {
         "os-desktop": HTMLOsDesktopElement;
         "os-main": HTMLOsMainElement;
+        "os-window": HTMLOsWindowElement;
     }
 }
 declare namespace LocalJSX {
@@ -34,9 +43,12 @@ declare namespace LocalJSX {
     }
     interface OsMain {
     }
+    interface OsWindow {
+    }
     interface IntrinsicElements {
         "os-desktop": OsDesktop;
         "os-main": OsMain;
+        "os-window": OsWindow;
     }
 }
 export { LocalJSX as JSX };
@@ -45,6 +57,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "os-desktop": LocalJSX.OsDesktop & JSXBase.HTMLAttributes<HTMLOsDesktopElement>;
             "os-main": LocalJSX.OsMain & JSXBase.HTMLAttributes<HTMLOsMainElement>;
+            "os-window": LocalJSX.OsWindow & JSXBase.HTMLAttributes<HTMLOsWindowElement>;
         }
     }
 }

@@ -1,4 +1,4 @@
-# os-main
+# os-window
 
 
 
@@ -7,16 +7,15 @@
 
 ## Dependencies
 
-### Depends on
+### Used by
 
-- [os-desktop](../os-desktop)
+ - [os-desktop](../os-desktop)
 
 ### Graph
 ```mermaid
 graph TD;
-  os-main --> os-desktop
   os-desktop --> os-window
-  style os-main fill:#f9f,stroke:#333,stroke-width:4px
+  style os-window fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

@@ -1,0 +1,22 @@
+:host {
+  position: absolute;
+  display: block;
+  touch-action: none;
+  box-sizing: border-box;
+  width: 800px;
+  height: 600px;
+  z-index: 1;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  left: 100px;
+  top: 30px;
+
+  .os-window-header {
+    height: 30px;
+  }
+
+  .os-window-content {
+    height: calc(100% - 30px);
+  }
+}

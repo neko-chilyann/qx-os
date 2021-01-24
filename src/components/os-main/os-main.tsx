@@ -1,5 +1,4 @@
-import { Component, Host, h, ComponentInterface, Element } from '@stencil/core';
-import interact from 'interactjs';
+import { Component, Host, h, ComponentInterface } from '@stencil/core';
 
 /**
  * OS主入口
@@ -13,19 +12,6 @@ import interact from 'interactjs';
   shadow: true,
 })
 export class OsMain implements ComponentInterface {
-  /**
-   * 当前组件DOM实例
-   *
-   * @type {HTMLOsMainElement}
-   * @memberof OsMain
-   */
-  @Element()
-  el: HTMLOsMainElement;
-
-  componentDidLoad() {
-    interact(this.el);
-  }
-
   render() {
     return (
       <Host class='os-main'>

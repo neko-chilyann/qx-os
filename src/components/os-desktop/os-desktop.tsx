@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, ComponentInterface } from '@stencil/core';
 
 /**
  * OS桌面
@@ -11,7 +11,7 @@ import { Component, Host, h } from '@stencil/core';
   styleUrl: 'os-desktop.scss',
   shadow: true,
 })
-export class OsDesktop {
+export class OsDesktop implements ComponentInterface {
   render() {
     return (
       <Host class='os-desktop'>
@@ -23,7 +23,10 @@ export class OsDesktop {
           }}
         />
         <div class='os-desktop-container'>
-          <div class='os-desktop-content'>桌面内容</div>
+          <div class='os-desktop-content'>
+            桌面内容
+            <os-window/>
+          </div>
           <div class='os-desktop-task'>任务栏</div>
         </div>
       </Host>
