@@ -1,5 +1,6 @@
 import { OSEvent } from '../../utils';
 import { ISystemEvents } from '../../interface';
+import { DesktopController } from '../desktop/desktop-controller';
 
 /**
  * 系统控制器
@@ -22,6 +23,12 @@ export class SystemController {
    * @memberof SystemController
    */
   readonly evt = new OSEvent<ISystemEvents>();
+  /**
+   * 桌面
+   *
+   * @memberof SystemController
+   */
+  readonly desktop = new DesktopController();
   /**
    * Creates an instance of SystemController.
    * @memberof SystemController
