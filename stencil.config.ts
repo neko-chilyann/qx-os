@@ -13,7 +13,7 @@ export const config: Config = {
   rollupPlugins: {
     before: [commonjs(), eslint(), NodePolyfills()],
   },
-  bundles: [{ components: ['os-main', 'os-desktop'] }],
+  bundles: [{ components: ['os-main', 'os-desktop', 'os-window'] }, { components: ['os-background-img'] }],
   outputTargets: [
     {
       type: 'dist',

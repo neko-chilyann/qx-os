@@ -1,6 +1,8 @@
 import { OSEvent } from '../../utils';
 import { ISystemEvents } from '../../interface';
 import { DesktopController } from '../desktop/desktop-controller';
+import { SystemStore } from '../../store';
+import { SystemState } from '../../state';
 
 /**
  * 系统控制器
@@ -23,6 +25,18 @@ export class SystemController {
    * @memberof SystemController
    */
   readonly evt = new OSEvent<ISystemEvents>();
+  /**
+   * 系统数据存储
+   *
+   * @memberof SystemController
+   */
+  readonly store = new SystemStore();
+  /**
+   * 系统状态存储
+   *
+   * @memberof SystemController
+   */
+  readonly state = new SystemState();
   /**
    * 桌面
    *

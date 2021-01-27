@@ -4,13 +4,81 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Stencil Component Starter</title>
+
+    <style>
+      :root {
+        --os-color-primary: #428cff;
+        --os-color-primary-rgb: 66, 140, 255;
+        --os-color-primary-contrast: #ffffff;
+        --os-color-primary-contrast-rgb: 255, 255, 255;
+        --os-color-primary-shade: #3a7be0;
+        --os-color-primary-tint: #5598ff;
+
+        --os-color-secondary: #50c8ff;
+        --os-color-secondary-rgb: 80, 200, 255;
+        --os-color-secondary-contrast: #ffffff;
+        --os-color-secondary-contrast-rgb: 255, 255, 255;
+        --os-color-secondary-shade: #46b0e0;
+        --os-color-secondary-tint: #62ceff;
+
+        --os-color-tertiary: #6a64ff;
+        --os-color-tertiary-rgb: 106, 100, 255;
+        --os-color-tertiary-contrast: #ffffff;
+        --os-color-tertiary-contrast-rgb: 255, 255, 255;
+        --os-color-tertiary-shade: #5d58e0;
+        --os-color-tertiary-tint: #7974ff;
+
+        --os-color-success: #2fdf75;
+        --os-color-success-rgb: 47, 223, 117;
+        --os-color-success-contrast: #000000;
+        --os-color-success-contrast-rgb: 0, 0, 0;
+        --os-color-success-shade: #29c467;
+        --os-color-success-tint: #44e283;
+
+        --os-color-warning: #ffd534;
+        --os-color-warning-rgb: 255, 213, 52;
+        --os-color-warning-contrast: #000000;
+        --os-color-warning-contrast-rgb: 0, 0, 0;
+        --os-color-warning-shade: #e0bb2e;
+        --os-color-warning-tint: #ffd948;
+
+        --os-color-danger: #ff4961;
+        --os-color-danger-rgb: 255, 73, 97;
+        --os-color-danger-contrast: #ffffff;
+        --os-color-danger-contrast-rgb: 255, 255, 255;
+        --os-color-danger-shade: #e04055;
+        --os-color-danger-tint: #ff5b71;
+
+        --os-color-dark: #f4f5f8;
+        --os-color-dark-rgb: 244, 245, 248;
+        --os-color-dark-contrast: #000000;
+        --os-color-dark-contrast-rgb: 0, 0, 0;
+        --os-color-dark-shade: #d7d8da;
+        --os-color-dark-tint: #f5f6f9;
+
+        --os-color-medium: #989aa2;
+        --os-color-medium-rgb: 152, 154, 162;
+        --os-color-medium-contrast: #000000;
+        --os-color-medium-contrast-rgb: 0, 0, 0;
+        --os-color-medium-shade: #86888f;
+        --os-color-medium-tint: #a2a4ab;
+
+        --os-color-light: #222428;
+        --os-color-light-rgb: 34, 36, 40;
+        --os-color-light-contrast: #ffffff;
+        --os-color-light-contrast-rgb: 255, 255, 255;
+        --os-color-light-shade: #1e2023;
+        --os-color-light-tint: #383a3e;
+      }
+    </style>
+
     <link rel="stylesheet" href="./build/qx-os.css" />
     <link rel="stylesheet" href="./assets/examples/css/index.css" />
 
     <script type="module" src="./build/qx-os.esm.js"></script>
     <script nomodule src="./build/qx-os.js"></script>
   </head>
-  <body>
+  <body class="os-color-primary">
     <os-main></os-main>
     <script src="./assets/examples/js/index.cjs"></script>
   </body>

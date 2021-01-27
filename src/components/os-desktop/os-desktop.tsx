@@ -1,4 +1,5 @@
-import { Component, Host, h, ComponentInterface } from '@stencil/core';
+import { Component, Host, h, ComponentInterface, Prop } from '@stencil/core';
+import { DesktopController } from '../../controller';
 
 /**
  * OS桌面
@@ -12,20 +13,36 @@ import { Component, Host, h, ComponentInterface } from '@stencil/core';
   shadow: true,
 })
 export class OsDesktop implements ComponentInterface {
+  /**
+   * 控制器
+   *
+   * @type {DesktopController}
+   * @memberof OsDesktop
+   */
+  @Prop()
+  controller: DesktopController;
+
+  /**
+   * 内容DOM根节点
+   *
+   * @type {HTMLDivElement}
+   * @memberof OsDesktop
+   */
+  content: HTMLDivElement;
+
+  componentDidLoad() {
+    this.controller.win.setDesktopContainer(this.content);
+    this.controller.win.open(document.createElement('div'));
+    this.controller.win.open(document.createElement('div'));
+  }
+
   render() {
     return (
       <Host class='os-desktop'>
-        <div
-          class='os-background-img-wrapper'
-          style={{
-            background: 'url(./assets/images/default_bk_img.jpg) no-repeat center',
-            'background-size': 'cover',
-          }}
-        />
+        <os-background-img />
         <div class='os-desktop-container'>
-          <div class='os-desktop-content'>
+          <div class='os-desktop-content' ref={ref => (this.content = ref)}>
             桌面内容
-            <os-window/>
           </div>
           <div class='os-desktop-task'>任务栏</div>
         </div>

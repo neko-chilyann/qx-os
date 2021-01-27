@@ -11,10 +11,6 @@ body {
   background: var(--os-background-color);
 }
 
-body.backdrop-no-scroll {
-  overflow: hidden;
-}
-
 // Ionic Colors
 // --------------------------------------------------
 // Generates the color classes and variables based on the
@@ -42,56 +38,6 @@ $value in $colors {
     @include generate-color($color-name);
   }
 }
-
-
-// Page Container Structure
-// --------------------------------------------------
-
-.os-page {
-  @include position(0, 0, 0, 0);
-
-  display: flex;
-  position: absolute;
-
-  flex-direction: column;
-  justify-content: space-between;
-
-  contain: layout size style;
-  overflow: hidden;
-  z-index: $z-index-page-container;
-}
-
-.split-pane-visible>.os-page.split-pane-main {
-  position: relative;
-}
-
-os-route,
-os-route-redirect,
-os-router,
-os-select-option,
-os-nav-controller,
-os-menu-controller,
-os-action-sheet-controller,
-os-alert-controller,
-os-loading-controller,
-os-modal-controller,
-os-picker-controller,
-os-popover-controller,
-os-toast-controller,
-.os-page-hidden,
-[hidden] {
-  /* stylelint-disable-next-line declaration-no-important */
-  display: none !important;
-}
-
-.os-page-invisible {
-  opacity: 0;
-}
-
-.can-go-back>os-header os-back-button {
-  display: block;
-}
-
 
 // Ionic Safe Margins
 // --------------------------------------------------
@@ -121,29 +67,6 @@ os-toast-controller,
   }
 }
 
-
-// Global Card Styles
-// --------------------------------------------------
-
-os-card.os-color .os-inherit-color,
-os-card-header.os-color .os-inherit-color {
-  color: inherit;
-}
-
-
-// Menu Styles
-// TODO: Find a better long term solution for this
-// --------------------------------------------------
-
-.menu-content {
-  @include transform(translate3d(0, 0, 0));
-}
-
-.menu-content-open {
-  cursor: pointer;
-  touch-action: manipulation;
-
-  // the containing element itself should be clickable but
-  // everything inside of it should not clickable when menu is open
-  pointer-events: none;
+:root {
+  --border-color: #{$border-color};
 }

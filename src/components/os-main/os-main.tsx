@@ -15,7 +15,7 @@ export class OsMain implements ComponentInterface {
   render() {
     return (
       <Host class='os-main'>
-        <os-desktop></os-desktop>
+        <os-desktop controller={sys.desktop} />
       </Host>
     );
   }

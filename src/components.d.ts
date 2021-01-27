@@ -5,8 +5,22 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { DesktopController } from "./controller";
 export namespace Components {
+    interface OsBackgroundImg {
+        /**
+          * 背景图片
+          * @memberof OsBackgroundImg
+         */
+        "img": string;
+    }
     interface OsDesktop {
+        /**
+          * 控制器
+          * @type {DesktopController}
+          * @memberof OsDesktop
+         */
+        "controller": DesktopController;
     }
     interface OsMain {
     }
@@ -14,6 +28,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLOsBackgroundImgElement extends Components.OsBackgroundImg, HTMLStencilElement {
+    }
+    var HTMLOsBackgroundImgElement: {
+        prototype: HTMLOsBackgroundImgElement;
+        new (): HTMLOsBackgroundImgElement;
+    };
     interface HTMLOsDesktopElement extends Components.OsDesktop, HTMLStencilElement {
     }
     var HTMLOsDesktopElement: {
@@ -33,19 +53,34 @@ declare global {
         new (): HTMLOsWindowElement;
     };
     interface HTMLElementTagNameMap {
+        "os-background-img": HTMLOsBackgroundImgElement;
         "os-desktop": HTMLOsDesktopElement;
         "os-main": HTMLOsMainElement;
         "os-window": HTMLOsWindowElement;
     }
 }
 declare namespace LocalJSX {
+    interface OsBackgroundImg {
+        /**
+          * 背景图片
+          * @memberof OsBackgroundImg
+         */
+        "img"?: string;
+    }
     interface OsDesktop {
+        /**
+          * 控制器
+          * @type {DesktopController}
+          * @memberof OsDesktop
+         */
+        "controller"?: DesktopController;
     }
     interface OsMain {
     }
     interface OsWindow {
     }
     interface IntrinsicElements {
+        "os-background-img": OsBackgroundImg;
         "os-desktop": OsDesktop;
         "os-main": OsMain;
         "os-window": OsWindow;
@@ -55,6 +90,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "os-background-img": LocalJSX.OsBackgroundImg & JSXBase.HTMLAttributes<HTMLOsBackgroundImgElement>;
             "os-desktop": LocalJSX.OsDesktop & JSXBase.HTMLAttributes<HTMLOsDesktopElement>;
             "os-main": LocalJSX.OsMain & JSXBase.HTMLAttributes<HTMLOsMainElement>;
             "os-window": LocalJSX.OsWindow & JSXBase.HTMLAttributes<HTMLOsWindowElement>;
