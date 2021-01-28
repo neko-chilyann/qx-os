@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { SystemController } from "./controller";
+import { DesktopController, WindowController } from "./controller";
 export namespace Components {
     interface OsBackgroundImg {
         /**
@@ -16,15 +16,19 @@ export namespace Components {
     }
     interface OsDesktop {
         /**
-          * 控制器
-          * @type {SystemController}
+          * 桌面控制
           * @memberof OsDesktop
          */
-        "sys": SystemController;
+        "controller": DesktopController;
     }
     interface OsMain {
     }
     interface OsWindow {
+        /**
+          * window控制器
+          * @memberof OsWindow
+         */
+        "controller": WindowController;
     }
 }
 declare global {
@@ -69,15 +73,19 @@ declare namespace LocalJSX {
     }
     interface OsDesktop {
         /**
-          * 控制器
-          * @type {SystemController}
+          * 桌面控制
           * @memberof OsDesktop
          */
-        "sys"?: SystemController;
+        "controller"?: DesktopController;
     }
     interface OsMain {
     }
     interface OsWindow {
+        /**
+          * window控制器
+          * @memberof OsWindow
+         */
+        "controller"?: WindowController;
     }
     interface IntrinsicElements {
         "os-background-img": OsBackgroundImg;

@@ -21,11 +21,15 @@ export class OsMain implements ComponentInterface {
    */
   sys: SystemController = window.sys;
 
+  componentWillLoad() {
+    this.sys.createDesktop();
+  }
+
   render() {
-    return (
-      <Host class='os-main'>
-        <os-desktop sys={this.sys} />
-      </Host>
-    );
+    const arr = [];
+    this.sys.store.desktops.forEach(item => {
+      arr.push(<os-desktop key={item.uuid} controller={item}/>);
+    });
+    return <Host class='os-main'>{arr}</Host>;
   }
 }

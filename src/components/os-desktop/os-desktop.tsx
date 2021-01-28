@@ -21,22 +21,20 @@ export class OsDesktop implements ComponentInterface {
   @Prop()
   controller: DesktopController;
 
-  /**
-   * 内容DOM根节点
-   *
-   * @type {HTMLDivElement}
-   * @memberof OsDesktop
-   */
-  content: HTMLDivElement;
+  componentWillLoad() {
+    this.controller.createWindow();
+  }
 
   render() {
+    const arr = [];
+    this.controller.store.windows.forEach(item => {
+      arr.push(<os-window key={item.uuid} controller={item} />);
+    });
     return (
       <Host class='os-desktop'>
         <os-background-img />
         <div class='os-desktop-container'>
-          <div class='os-desktop-content' ref={ref => (this.content = ref)}>
-            桌面内容
-          </div>
+          <div class='os-desktop-content'>{arr}</div>
           <div class='os-desktop-task'>任务栏</div>
         </div>
       </Host>

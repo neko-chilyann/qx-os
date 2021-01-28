@@ -4,4 +4,4 @@
  * @export
  * @class StoreBase
  */
-export class StoreBase {}
+export abstract class StoreBase {}

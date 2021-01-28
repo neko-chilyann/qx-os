@@ -3,6 +3,7 @@ import { ControllerBase } from '../base/controller-base';
 import { DesktopContext } from '../../context';
 import { DesktopStore } from '../../store';
 import { DesktopState } from '../../state';
+import { WindowController } from '../window/window-controller';
 
 /**
  * 桌面控制器
@@ -55,5 +56,19 @@ export class DesktopController extends ControllerBase {
    */
   setSystemController(sys: SystemController): void {
     this.sys = sys;
+  }
+
+  /**
+   * 新建窗口
+   *
+   * @param {*} [_opt]
+   * @return {*}  {WindowController}
+   * @memberof SystemController
+   */
+  createWindow(_opt?: any): WindowController {
+    const desktop = new WindowController();
+    desktop.setDesktopController(this);
+    this.store.addWindow(desktop);
+    return desktop;
   }
 }

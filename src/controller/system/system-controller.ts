@@ -4,6 +4,7 @@ import { ISystemEvents } from '../../interface';
 import { SystemContext } from '../../context';
 import { SystemStore } from '../../store';
 import { SystemState } from '../../state';
+import { DesktopController } from '../desktop/desktop-controller';
 
 /**
  * 系统控制器
@@ -53,6 +54,7 @@ export class SystemController extends ControllerBase {
    * @memberof SystemController
    */
   readonly state = new SystemState();
+
   /**
    * Creates an instance of SystemController.
    * @memberof SystemController
@@ -62,5 +64,19 @@ export class SystemController extends ControllerBase {
     if (SystemController.instance) {
       return SystemController.instance;
     }
+  }
+
+  /**
+   * 新建桌面
+   *
+   * @param {*} [_opt]
+   * @return {*}  {DesktopController}
+   * @memberof SystemController
+   */
+  createDesktop(_opt?: any): DesktopController {
+    const desktop = new DesktopController();
+    desktop.setSystemController(this);
+    this.store.addDesktop(desktop);
+    return desktop;
   }
 }
