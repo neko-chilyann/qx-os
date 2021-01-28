@@ -1,4 +1,4 @@
-import { SystemContext } from '../context';
+import { SystemController } from '../controller';
 
 /**
  * 全局默认初始执行
@@ -11,5 +11,5 @@ export default function () {
     return;
   }
   // 初始化系统控制器
-  window.sys_ctx = new SystemContext();
+  window.sys = new SystemController();
 }

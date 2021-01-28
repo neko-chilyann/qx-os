@@ -1,4 +1,6 @@
 import { WindowContext } from '../../context';
+import { WindowState } from '../../state';
+import { WindowStore } from '../../store';
 import { ControllerBase } from '../base/controller-base';
 import { DesktopController } from '../desktop/desktop-controller';
 
@@ -26,15 +28,24 @@ export class WindowController extends ControllerBase {
    * @memberof WindowController
    */
   protected desktop: DesktopController;
-
   /**
-   * Creates an instance of WindowController.
-   * @param {WindowContext} ctx
+   * 窗口上下文
+   *
    * @memberof WindowController
    */
-  constructor(ctx: WindowContext) {
-    super(ctx);
-  }
+  readonly context = new WindowContext();
+  /**
+   * 窗口数据存储
+   *
+   * @memberof WindowController
+   */
+  readonly store = new WindowStore();
+  /**
+   * 窗口状态
+   *
+   * @memberof WindowController
+   */
+  readonly state = new WindowState();
 
   // /**
   //  * 打开窗口

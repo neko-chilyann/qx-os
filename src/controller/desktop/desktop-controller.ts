@@ -1,6 +1,8 @@
 import { SystemController } from '../system/system-controller';
 import { ControllerBase } from '../base/controller-base';
 import { DesktopContext } from '../../context';
+import { DesktopStore } from '../../store';
+import { DesktopState } from '../../state';
 
 /**
  * 桌面控制器
@@ -26,15 +28,24 @@ export class DesktopController extends ControllerBase {
    * @memberof DesktopController
    */
   protected sys: SystemController;
-
   /**
-   * Creates an instance of DesktopController.
-   * @param {DesktopContext} ctx
+   * 桌面上下文
+   *
    * @memberof DesktopController
    */
-  constructor(ctx: DesktopContext) {
-    super(ctx);
-  }
+  readonly context = new DesktopContext();
+  /**
+   * 桌面数据存储
+   *
+   * @memberof DesktopController
+   */
+  readonly store = new DesktopStore();
+  /**
+   * 桌面状态
+   *
+   * @memberof DesktopController
+   */
+  readonly state = new DesktopState();
 
   /**
    * 设置系统控制器

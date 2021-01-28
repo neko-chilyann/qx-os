@@ -1,3 +1,4 @@
+import { DesktopContext } from '../../context';
 import { StoreBase } from '../base/store-base';
 
 /**
@@ -7,4 +8,12 @@ import { StoreBase } from '../base/store-base';
  * @class SystemStore
  * @extends {StoreBase}
  */
-export class SystemStore extends StoreBase {}
+export class SystemStore extends StoreBase {
+  /**
+   * 所有桌面
+   *
+   * @type {DesktopContext[]}
+   * @memberof SystemStore
+   */
+  readonly desktops: DesktopContext[] = [];
+}

@@ -1,7 +1,6 @@
 import { Component, Host, h, Element, ComponentInterface, Prop } from '@stencil/core';
 import interact from 'interactjs';
-import { WindowContext } from '../../context';
-import { DesktopController } from '../../controller';
+import { WindowController } from '../../controller';
 
 /**
  * window窗口
@@ -16,20 +15,12 @@ import { DesktopController } from '../../controller';
 })
 export class OsWindow implements ComponentInterface {
   /**
-   * 桌面控制器
-   *
-   * @type {DesktopController}
-   * @memberof OsWindow
-   */
-  @Prop()
-  desktop: DesktopController;
-
-  /**
    * window控制器
    *
    * @memberof OsWindow
    */
-  ctx = new WindowContext();
+  @Prop()
+  controller: WindowController;
 
   /**
    * 组件DOM实例
@@ -48,10 +39,6 @@ export class OsWindow implements ComponentInterface {
    */
   header: HTMLDivElement;
 
-  componentWillLoad() {
-    this.ctx.controller.setDesktopController(this.desktop);
-  }
-
   componentDidLoad() {
     interact(this.header).draggable({
       modifiers: [
@@ -65,7 +52,7 @@ export class OsWindow implements ComponentInterface {
       },
       listeners: {
         move: event => {
-          const { state } = this.ctx;
+          const { state } = this.controller;
           // 计算偏移量保持位置
           state.x += event.dx;
           state.y += event.dy;
@@ -87,7 +74,7 @@ export class OsWindow implements ComponentInterface {
       listeners: {
         move: event => {
           const target = event.target;
-          const { state } = this.ctx;
+          const { state } = this.controller;
           state.x += event.deltaRect.left;
           state.y += event.deltaRect.top;
           // 更新宽高

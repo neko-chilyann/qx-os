@@ -2,6 +2,8 @@ import { ControllerBase } from '../base/controller-base';
 import { OSEvent } from '../../utils';
 import { ISystemEvents } from '../../interface';
 import { SystemContext } from '../../context';
+import { SystemStore } from '../../store';
+import { SystemState } from '../../state';
 
 /**
  * 系统控制器
@@ -18,7 +20,7 @@ export class SystemController extends ControllerBase {
    * @static
    * @memberof SystemController
    */
-  private static instance;
+  private static readonly instance = new SystemController();
   /**
    * 系统事件
    *
@@ -33,16 +35,32 @@ export class SystemController extends ControllerBase {
    * @memberof SystemController
    */
   protected readonly ctx: SystemContext;
-
+  /**
+   * 系统上下文
+   *
+   * @memberof SystemController
+   */
+  readonly context = new SystemContext();
+  /**
+   * 系统数据存储
+   *
+   * @memberof SystemController
+   */
+  readonly store = new SystemStore();
+  /**
+   * 系统状态存储
+   *
+   * @memberof SystemController
+   */
+  readonly state = new SystemState();
   /**
    * Creates an instance of SystemController.
    * @memberof SystemController
    */
-  constructor(ctx: SystemContext) {
-    super(ctx);
+  constructor() {
+    super();
     if (SystemController.instance) {
       return SystemController.instance;
     }
-    SystemController.instance = this;
   }
 }

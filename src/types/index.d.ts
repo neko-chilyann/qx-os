@@ -1,7 +1,7 @@
-import { SystemContext } from '../context';
+import { SystemController } from '../controller';
 
 declare global {
-  const sys_ctx: SystemContext;
+  const sys: SystemController;
   interface Window {
     /**
      * 系统是否已安装
@@ -16,6 +16,6 @@ declare global {
      * @type {SystemController}
      * @memberof Window
      */
-    sys_ctx: SystemContext;
+    sys: SystemController;
   }
 }
