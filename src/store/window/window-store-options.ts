@@ -4,12 +4,5 @@
  * @export
  * @interface WindowStoreOptions
  */
-export interface WindowStoreOptions {
-  /**
-   * 当前窗口层级
-   *
-   * @type {number}
-   * @memberof WindowStoreOptions
-   */
-  zIndex: number;
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface WindowStoreOptions {}

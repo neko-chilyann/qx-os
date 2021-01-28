@@ -77,10 +77,22 @@ export class DesktopController extends ControllerBase {
    * @memberof DesktopController
    */
   createWindow(_opt?: WindowOptions): WindowController {
+    sys.store.zIndexIncrease();
     const win = new WindowController();
     win.setDesktopController(this);
     this.store.addWindow(win);
     this.store.setActiveWindow(win);
     return win;
+  }
+
+  /**
+   * 销毁窗口
+   *
+   * @param {WindowController} desktop
+   * @memberof DesktopController
+   */
+  destroyWindow(desktop: WindowController): void {
+    sys.store.zIndexReduce();
+    this.store.destroyWindow(desktop);
   }
 }

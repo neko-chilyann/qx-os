@@ -87,11 +87,15 @@ export class OsWindow implements ComponentInterface {
     });
   }
 
+  active = () => {
+    this.controller.active();
+  };
+
   render() {
     return (
       <Host class='os-window'>
         <os-background-img />
-        <div class='os-window-header' ref={ref => (this.header = ref)}>
+        <div class='os-window-header' ref={ref => (this.header = ref)} onClick={this.active}>
           窗口头部
         </div>
         <div class='os-window-content'>窗口内容</div>

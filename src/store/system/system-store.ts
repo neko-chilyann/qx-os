@@ -11,7 +11,7 @@ import { SystemStoreOptions } from './system-store-options';
  */
 export class SystemStore extends StoreBase {
   private readonly cache: SystemStoreOptions = {
-    zIndex: 1
+    zIndex: 0
   };
   /**
    * 所有桌面

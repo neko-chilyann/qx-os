@@ -69,4 +69,13 @@ export class WindowController extends ControllerBase {
   setDesktopController(desktop: DesktopController): void {
     this.desktop = desktop;
   }
+
+  /**
+   * 激活当前窗口
+   *
+   * @memberof WindowController
+   */
+  active(): void {
+    this.desktop.store.setActiveWindow(this);
+  }
 }
