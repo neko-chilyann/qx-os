@@ -1,6 +1,7 @@
-import { Component, Host, h, Element, ComponentInterface } from '@stencil/core';
+import { Component, Host, h, Element, ComponentInterface, Prop } from '@stencil/core';
 import interact from 'interactjs';
 import { WindowContext } from '../../context';
+import { DesktopController } from '../../controller';
 
 /**
  * window窗口
@@ -14,6 +15,22 @@ import { WindowContext } from '../../context';
   shadow: true,
 })
 export class OsWindow implements ComponentInterface {
+  /**
+   * 桌面控制器
+   *
+   * @type {DesktopController}
+   * @memberof OsWindow
+   */
+  @Prop()
+  desktop: DesktopController;
+
+  /**
+   * window控制器
+   *
+   * @memberof OsWindow
+   */
+  ctx = new WindowContext();
+
   /**
    * 组件DOM实例
    *
@@ -31,12 +48,9 @@ export class OsWindow implements ComponentInterface {
    */
   header: HTMLDivElement;
 
-  /**
-   * 窗口上下文
-   *
-   * @memberof OsWindow
-   */
-  ctx = new WindowContext();
+  componentWillLoad() {
+    this.ctx.controller.setDesktopController(this.desktop);
+  }
 
   componentDidLoad() {
     interact(this.header).draggable({

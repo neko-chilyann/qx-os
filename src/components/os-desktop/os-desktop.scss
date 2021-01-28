@@ -5,7 +5,7 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: unset !important;
+  background-color: #{$background-color};
   color: #{$text-color};
 
   .os-desktop-container {

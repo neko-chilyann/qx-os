@@ -1,16 +1,16 @@
+import { ControllerBase } from '../base/controller-base';
 import { OSEvent } from '../../utils';
 import { ISystemEvents } from '../../interface';
-import { DesktopController } from '../desktop/desktop-controller';
-import { SystemStore } from '../../store';
-import { SystemState } from '../../state';
+import { SystemContext } from '../../context';
 
 /**
  * 系统控制器
  *
  * @export
  * @class SystemController
+ * @extends {ControllerBase}
  */
-export class SystemController {
+export class SystemController extends ControllerBase {
   /**
    * 唯一实例
    *
@@ -18,7 +18,7 @@ export class SystemController {
    * @static
    * @memberof SystemController
    */
-  private static instance = new SystemController();
+  private static instance;
   /**
    * 系统事件
    *
@@ -26,30 +26,23 @@ export class SystemController {
    */
   readonly evt = new OSEvent<ISystemEvents>();
   /**
-   * 系统数据存储
+   * 系统上下文
    *
+   * @protected
+   * @type {SystemContext}
    * @memberof SystemController
    */
-  readonly store = new SystemStore();
-  /**
-   * 系统状态存储
-   *
-   * @memberof SystemController
-   */
-  readonly state = new SystemState();
-  /**
-   * 桌面
-   *
-   * @memberof SystemController
-   */
-  readonly desktop = new DesktopController();
+  protected readonly ctx: SystemContext;
+
   /**
    * Creates an instance of SystemController.
    * @memberof SystemController
    */
-  constructor() {
+  constructor(ctx: SystemContext) {
+    super(ctx);
     if (SystemController.instance) {
       return SystemController.instance;
     }
+    SystemController.instance = this;
   }
 }

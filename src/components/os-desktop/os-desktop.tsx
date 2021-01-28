@@ -1,5 +1,6 @@
 import { Component, Host, h, ComponentInterface, Prop } from '@stencil/core';
-import { DesktopController } from '../../controller';
+import { DesktopContext } from '../../context';
+import { SystemController } from '../../controller';
 
 /**
  * OS桌面
@@ -16,11 +17,18 @@ export class OsDesktop implements ComponentInterface {
   /**
    * 控制器
    *
-   * @type {DesktopController}
+   * @type {SystemController}
    * @memberof OsDesktop
    */
   @Prop()
-  controller: DesktopController;
+  sys: SystemController;
+
+  /**
+   * 桌面控制
+   *
+   * @memberof OsDesktop
+   */
+  ctx = new DesktopContext();
 
   /**
    * 内容DOM根节点
@@ -30,10 +38,8 @@ export class OsDesktop implements ComponentInterface {
    */
   content: HTMLDivElement;
 
-  componentDidLoad() {
-    this.controller.win.setDesktopContainer(this.content);
-    this.controller.win.open(document.createElement('div'));
-    this.controller.win.open(document.createElement('div'));
+  componentWillLoad() {
+    this.ctx.controller.setSystemController(this.sys);
   }
 
   render() {

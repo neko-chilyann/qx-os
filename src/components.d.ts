@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { DesktopController } from "./controller";
+import { SystemController } from "./controller";
 export namespace Components {
     interface OsBackgroundImg {
         /**
@@ -17,10 +17,10 @@ export namespace Components {
     interface OsDesktop {
         /**
           * 控制器
-          * @type {DesktopController}
+          * @type {SystemController}
           * @memberof OsDesktop
          */
-        "controller": DesktopController;
+        "sys": SystemController;
     }
     interface OsMain {
     }
@@ -70,10 +70,10 @@ declare namespace LocalJSX {
     interface OsDesktop {
         /**
           * 控制器
-          * @type {DesktopController}
+          * @type {SystemController}
           * @memberof OsDesktop
          */
-        "controller"?: DesktopController;
+        "sys"?: SystemController;
     }
     interface OsMain {
     }

@@ -68,5 +68,6 @@ $value in $colors {
 }
 
 :root {
+  --os-background-color: none;
   --border-color: #{$border-color};
 }

@@ -1,38 +1,61 @@
+import { WindowContext } from '../../context';
+import { ControllerBase } from '../base/controller-base';
+import { DesktopController } from '../desktop/desktop-controller';
+
 /**
  * 窗口控制器
  *
  * @export
  * @class WindowController
+ * @extends {ControllerBase}
  */
-export class WindowController {
+export class WindowController extends ControllerBase {
   /**
-   * 桌面内容承载器
+   * 窗口上下文
    *
-   * @type {HTMLDivElement}
+   * @protected
+   * @type {WindowContext}
    * @memberof WindowController
    */
-  container: HTMLDivElement;
+  protected readonly ctx: WindowContext;
+  /**
+   * 桌面控制器
+   *
+   * @protected
+   * @type {DesktopController}
+   * @memberof WindowController
+   */
+  protected desktop: DesktopController;
 
   /**
-   * 打开窗口
-   *
-   * @param {HTMLElement} content
+   * Creates an instance of WindowController.
+   * @param {WindowContext} ctx
    * @memberof WindowController
    */
-  open(content: HTMLElement) {
-    const el = document.createElement('os-window');
-    el.appendChild(content);
-    this.container.appendChild(el);
-    return el;
+  constructor(ctx: WindowContext) {
+    super(ctx);
   }
 
+  // /**
+  //  * 打开窗口
+  //  *
+  //  * @param {HTMLElement} content
+  //  * @memberof WindowController
+  //  */
+  // open(content: HTMLElement) {
+  //   const el = document.createElement('os-window');
+  //   el.appendChild(content);
+  //   this.container.appendChild(el);
+  //   return el;
+  // }
+
   /**
-   * 设置桌面承载容器
+   * 设置桌面控制器
    *
-   * @param {HTMLDivElement} el
+   * @param {DesktopController} desktop
    * @memberof WindowController
    */
-  setDesktopContainer(el: HTMLDivElement):void {
-    this.container = el;
+  setDesktopController(desktop: DesktopController): void {
+    this.desktop = desktop;
   }
 }

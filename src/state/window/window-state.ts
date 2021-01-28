@@ -1,4 +1,13 @@
-export class WindowState {
+import { StateBase } from '../base/state-base';
+
+/**
+ * 窗口状态
+ *
+ * @export
+ * @class WindowState
+ * @extends {StateBase}
+ */
+export class WindowState extends StateBase {
   /**
    * 偏移量x轴
    *
