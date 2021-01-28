@@ -4,6 +4,7 @@ import { DesktopContext } from '../../context';
 import { DesktopStore } from '../../store';
 import { DesktopState } from '../../state';
 import { WindowController } from '../window/window-controller';
+import { WindowOptions } from '../../options';
 
 /**
  * 桌面控制器
@@ -47,6 +48,16 @@ export class DesktopController extends ControllerBase {
    * @memberof DesktopController
    */
   readonly state = new DesktopState();
+  /**
+   * 当前激活窗口
+   *
+   * @readonly
+   * @type {WindowController}
+   * @memberof DesktopController
+   */
+  get window(): WindowController {
+    return this.store.activeWindow;
+  }
 
   /**
    * 设置系统控制器
@@ -61,14 +72,15 @@ export class DesktopController extends ControllerBase {
   /**
    * 新建窗口
    *
-   * @param {*} [_opt]
+   * @param {WindowOptions} [_opt]
    * @return {*}  {WindowController}
-   * @memberof SystemController
+   * @memberof DesktopController
    */
-  createWindow(_opt?: any): WindowController {
-    const desktop = new WindowController();
-    desktop.setDesktopController(this);
-    this.store.addWindow(desktop);
-    return desktop;
+  createWindow(_opt?: WindowOptions): WindowController {
+    const win = new WindowController();
+    win.setDesktopController(this);
+    this.store.addWindow(win);
+    this.store.setActiveWindow(win);
+    return win;
   }
 }

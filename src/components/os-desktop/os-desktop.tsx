@@ -34,8 +34,13 @@ export class OsDesktop implements ComponentInterface {
       <Host class='os-desktop'>
         <os-background-img />
         <div class='os-desktop-container'>
-          <div class='os-desktop-content'>{arr}</div>
-          <div class='os-desktop-task'>任务栏</div>
+          <div class='os-desktop-content'>
+            <os-desktop-panel desktop={this.controller} />
+            {arr}
+          </div>
+          <div class='os-desktop-task'>
+            <os-taskbar desktop={this.controller} />
+          </div>
         </div>
       </Host>
     );

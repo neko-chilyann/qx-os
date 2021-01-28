@@ -21,7 +21,13 @@ export namespace Components {
          */
         "controller": DesktopController;
     }
+    interface OsDesktopPanel {
+        "desktop": DesktopController;
+    }
     interface OsMain {
+    }
+    interface OsTaskbar {
+        "desktop": DesktopController;
     }
     interface OsWindow {
         /**
@@ -44,11 +50,23 @@ declare global {
         prototype: HTMLOsDesktopElement;
         new (): HTMLOsDesktopElement;
     };
+    interface HTMLOsDesktopPanelElement extends Components.OsDesktopPanel, HTMLStencilElement {
+    }
+    var HTMLOsDesktopPanelElement: {
+        prototype: HTMLOsDesktopPanelElement;
+        new (): HTMLOsDesktopPanelElement;
+    };
     interface HTMLOsMainElement extends Components.OsMain, HTMLStencilElement {
     }
     var HTMLOsMainElement: {
         prototype: HTMLOsMainElement;
         new (): HTMLOsMainElement;
+    };
+    interface HTMLOsTaskbarElement extends Components.OsTaskbar, HTMLStencilElement {
+    }
+    var HTMLOsTaskbarElement: {
+        prototype: HTMLOsTaskbarElement;
+        new (): HTMLOsTaskbarElement;
     };
     interface HTMLOsWindowElement extends Components.OsWindow, HTMLStencilElement {
     }
@@ -59,7 +77,9 @@ declare global {
     interface HTMLElementTagNameMap {
         "os-background-img": HTMLOsBackgroundImgElement;
         "os-desktop": HTMLOsDesktopElement;
+        "os-desktop-panel": HTMLOsDesktopPanelElement;
         "os-main": HTMLOsMainElement;
+        "os-taskbar": HTMLOsTaskbarElement;
         "os-window": HTMLOsWindowElement;
     }
 }
@@ -78,7 +98,13 @@ declare namespace LocalJSX {
          */
         "controller"?: DesktopController;
     }
+    interface OsDesktopPanel {
+        "desktop"?: DesktopController;
+    }
     interface OsMain {
+    }
+    interface OsTaskbar {
+        "desktop"?: DesktopController;
     }
     interface OsWindow {
         /**
@@ -90,7 +116,9 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "os-background-img": OsBackgroundImg;
         "os-desktop": OsDesktop;
+        "os-desktop-panel": OsDesktopPanel;
         "os-main": OsMain;
+        "os-taskbar": OsTaskbar;
         "os-window": OsWindow;
     }
 }
@@ -100,7 +128,9 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "os-background-img": LocalJSX.OsBackgroundImg & JSXBase.HTMLAttributes<HTMLOsBackgroundImgElement>;
             "os-desktop": LocalJSX.OsDesktop & JSXBase.HTMLAttributes<HTMLOsDesktopElement>;
+            "os-desktop-panel": LocalJSX.OsDesktopPanel & JSXBase.HTMLAttributes<HTMLOsDesktopPanelElement>;
             "os-main": LocalJSX.OsMain & JSXBase.HTMLAttributes<HTMLOsMainElement>;
+            "os-taskbar": LocalJSX.OsTaskbar & JSXBase.HTMLAttributes<HTMLOsTaskbarElement>;
             "os-window": LocalJSX.OsWindow & JSXBase.HTMLAttributes<HTMLOsWindowElement>;
         }
     }

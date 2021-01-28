@@ -1,5 +1,6 @@
 import { WindowController } from '../../controller';
 import { StoreBase } from '../base/store-base';
+import { DesktopStoreOptions } from './desktop-store-options';
 
 /**
  * 桌面数据存储
@@ -9,6 +10,7 @@ import { StoreBase } from '../base/store-base';
  * @extends {StoreBase}
  */
 export class DesktopStore extends StoreBase {
+  private readonly cache: DesktopStoreOptions = {};
   /**
    * 所有桌面
    *
@@ -16,6 +18,16 @@ export class DesktopStore extends StoreBase {
    * @memberof DesktopStore
    */
   readonly windows: Map<string, WindowController> = new Map();
+  /**
+   * 当前激活窗口
+   *
+   * @readonly
+   * @type {WindowController}
+   * @memberof DesktopStore
+   */
+  get activeWindow(): WindowController {
+    return this.cache.activeWindow;
+  }
 
   /**
    * 新增桌面
@@ -35,5 +47,16 @@ export class DesktopStore extends StoreBase {
    */
   destroyWindow(controller: WindowController): void {
     this.windows.delete(controller.uuid);
+  }
+
+  /**
+   * 设置激活桌面
+   *
+   * @param {*} win
+   * @param {*} WindowController
+   * @memberof SystemStore
+   */
+  setActiveWindow(win: WindowController): void {
+    this.cache.activeWindow = win;
   }
 }
