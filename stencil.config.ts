@@ -14,7 +14,17 @@ export const config: Config = {
     before: [commonjs(), eslint(), NodePolyfills()],
   },
   bundles: [
-    { components: ['os-main', 'os-desktop', 'os-desktop-panel', 'os-taskbar', 'os-window'] },
+    {
+      components: [
+        'os-main',
+        'os-desktop',
+        'os-desktop-panel',
+        'os-taskbar',
+        'os-window',
+        'os-window-title',
+        'os-window-header-toolbar',
+      ],
+    },
     { components: ['os-background-img'] },
   ],
   outputTargets: [

@@ -21,13 +21,25 @@ export class OsDesktop implements ComponentInterface {
   @Prop()
   controller: DesktopController;
 
-  componentWillLoad() {
-    this.controller.createWindow();
+  connectedCallback(): void {
+    this.controller.evt.on('activeWindow', this.activeWindow);
   }
+
+  disconnectedCallback(): void {
+    this.controller.evt.off('activeWindow', this.activeWindow);
+  }
+
+  /**
+   * 窗口激活事件
+   *
+   * @memberof OsDesktop
+   */
+  activeWindow = (): void => {
+    forceUpdate(this);
+  };
 
   addWindow = () => {
     this.controller.createWindow();
-    forceUpdate(this);
   };
 
   render() {

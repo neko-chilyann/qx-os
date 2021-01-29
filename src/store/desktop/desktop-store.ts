@@ -10,7 +10,7 @@ import { DesktopStoreOptions } from './desktop-store-options';
  * @extends {StoreBase}
  */
 export class DesktopStore extends StoreBase {
-  private readonly cache: DesktopStoreOptions = {};
+  protected readonly cache: DesktopStoreOptions = {};
   /**
    * 所有桌面
    *
@@ -30,33 +30,46 @@ export class DesktopStore extends StoreBase {
   }
 
   /**
-   * 新增桌面
+   * 新增窗口
    *
-   * @param {DesktopController} controller
+   * @param {WindowController} window
    * @memberof DesktopStore
    */
-  addWindow(controller: WindowController): void {
-    this.windows.set(controller.uuid, controller);
+  addWindow(window: WindowController): void {
+    this.windows.set(window.uuid, window);
   }
 
   /**
-   * 销毁桌面
+   * 删除窗口
    *
-   * @param {DesktopController} controller
+   * @param {WindowController} window
    * @memberof DesktopStore
    */
-  destroyWindow(controller: WindowController): void {
-    this.windows.delete(controller.uuid);
+  destroyWindow(window: WindowController): void {
+    this.windows.delete(window.uuid);
   }
 
   /**
-   * 设置激活桌面
+   * 设置数据
    *
-   * @param {*} win
-   * @param {*} WindowController
-   * @memberof SystemStore
+   * @template K
+   * @param {K} key
+   * @param {DesktopStoreOptions[K]} val
+   * @memberof DesktopStore
    */
-  setActiveWindow(win: WindowController): void {
-    this.cache.activeWindow = win;
+  set<K extends keyof DesktopStoreOptions>(key: K, val: DesktopStoreOptions[K]): void {
+    this.cache[key] = val;
+  }
+
+  /**
+   * 获取数据
+   *
+   * @template K
+   * @param {K} key
+   * @return {*}  {DesktopStoreOptions[K]}
+   * @memberof DesktopStore
+   */
+  get<K extends keyof DesktopStoreOptions>(key: K): DesktopStoreOptions[K] {
+    return this.cache[key];
   }
 }

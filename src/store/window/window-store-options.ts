@@ -4,5 +4,12 @@
  * @export
  * @interface WindowStoreOptions
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface WindowStoreOptions {}
+export interface WindowStoreOptions {
+  /**
+   * 标题
+   *
+   * @type {string}
+   * @memberof WindowStoreOptions
+   */
+  title?: string;
+}

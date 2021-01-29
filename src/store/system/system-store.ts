@@ -10,8 +10,8 @@ import { SystemStoreOptions } from './system-store-options';
  * @extends {StoreBase}
  */
 export class SystemStore extends StoreBase {
-  private readonly cache: SystemStoreOptions = {
-    zIndex: 0
+  protected readonly cache: SystemStoreOptions = {
+    zIndex: 0,
   };
   /**
    * 所有桌面
@@ -101,5 +101,29 @@ export class SystemStore extends StoreBase {
   zIndexReduce(): number {
     this.cache.zIndex -= 10;
     return this.cache.zIndex;
+  }
+
+  /**
+   * 设置数据
+   *
+   * @template K
+   * @param {K} key
+   * @param {SystemStoreOptions[K]} val
+   * @memberof SystemStore
+   */
+  set<K extends keyof SystemStoreOptions>(key: K, val: SystemStoreOptions[K]): void {
+    this.cache[key] = val;
+  }
+
+  /**
+   * 获取数据
+   *
+   * @template K
+   * @param {K} key
+   * @return {*}  {SystemStoreOptions[K]}
+   * @memberof SystemStore
+   */
+  get<K extends keyof SystemStoreOptions>(key: K): SystemStoreOptions[K] {
+    return this.cache[key];
   }
 }

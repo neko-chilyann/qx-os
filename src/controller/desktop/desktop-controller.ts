@@ -5,6 +5,8 @@ import { DesktopStore } from '../../store';
 import { DesktopState } from '../../state';
 import { WindowController } from '../window/window-controller';
 import { WindowOptions } from '../../options';
+import { OSEvent } from '../../utils';
+import { IDesktopEvents } from '../../interface';
 
 /**
  * 桌面控制器
@@ -30,6 +32,12 @@ export class DesktopController extends ControllerBase {
    * @memberof DesktopController
    */
   protected sys: SystemController;
+  /**
+   * 系统事件
+   *
+   * @memberof DesktopController
+   */
+  readonly evt = new OSEvent<IDesktopEvents>();
   /**
    * 桌面上下文
    *
@@ -81,18 +89,29 @@ export class DesktopController extends ControllerBase {
     const win = new WindowController();
     win.setDesktopController(this);
     this.store.addWindow(win);
-    this.store.setActiveWindow(win);
+    this.activeWindow(win);
     return win;
   }
 
   /**
    * 销毁窗口
    *
-   * @param {WindowController} desktop
+   * @param {WindowController} window
    * @memberof DesktopController
    */
-  destroyWindow(desktop: WindowController): void {
+  destroyWindow(window: WindowController): void {
     sys.store.zIndexReduce();
-    this.store.destroyWindow(desktop);
+    this.store.destroyWindow(window);
+  }
+
+  /**
+   * 激活指定窗口
+   *
+   * @param {WindowController} window
+   * @memberof DesktopController
+   */
+  activeWindow(window: WindowController): void {
+    this.store.set('activeWindow', window);
+    this.evt.emit('activeWindow', window);
   }
 }

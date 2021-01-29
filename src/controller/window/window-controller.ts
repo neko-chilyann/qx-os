@@ -1,6 +1,8 @@
 import { WindowContext } from '../../context';
+import { IWindowEvents } from '../../interface';
 import { WindowState } from '../../state';
 import { WindowStore } from '../../store';
+import { OSEvent } from '../../utils';
 import { ControllerBase } from '../base/controller-base';
 import { DesktopController } from '../desktop/desktop-controller';
 
@@ -28,6 +30,12 @@ export class WindowController extends ControllerBase {
    * @memberof WindowController
    */
   protected desktop: DesktopController;
+  /**
+   * 系统事件
+   *
+   * @memberof WindowController
+   */
+  readonly evt = new OSEvent<IWindowEvents>();
   /**
    * 窗口上下文
    *
@@ -76,6 +84,6 @@ export class WindowController extends ControllerBase {
    * @memberof WindowController
    */
   active(): void {
-    this.desktop.store.setActiveWindow(this);
+    this.desktop.activeWindow(this);
   }
 }

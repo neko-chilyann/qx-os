@@ -17,6 +17,7 @@
   @include border-radius(5px);
 
   .os-window-header {
+    position: relative;
     height: 30px;
     border-bottom: 1px solid var(--border-color);
   }

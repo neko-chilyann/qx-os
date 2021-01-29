@@ -15,7 +15,12 @@
 ```mermaid
 graph TD;
   os-main --> os-desktop
+  os-desktop --> os-window
   os-desktop --> os-background-img
+  os-desktop --> os-desktop-panel
+  os-desktop --> os-taskbar
+  os-window --> os-background-img
+  os-window --> os-window-title
   style os-main fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

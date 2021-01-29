@@ -36,6 +36,16 @@ export namespace Components {
          */
         "controller": WindowController;
     }
+    interface OsWindowHeaderToolbar {
+    }
+    interface OsWindowTitle {
+        /**
+          * 标题
+          * @type {string}
+          * @memberof OsWindowTitle
+         */
+        "caption": string;
+    }
 }
 declare global {
     interface HTMLOsBackgroundImgElement extends Components.OsBackgroundImg, HTMLStencilElement {
@@ -74,6 +84,18 @@ declare global {
         prototype: HTMLOsWindowElement;
         new (): HTMLOsWindowElement;
     };
+    interface HTMLOsWindowHeaderToolbarElement extends Components.OsWindowHeaderToolbar, HTMLStencilElement {
+    }
+    var HTMLOsWindowHeaderToolbarElement: {
+        prototype: HTMLOsWindowHeaderToolbarElement;
+        new (): HTMLOsWindowHeaderToolbarElement;
+    };
+    interface HTMLOsWindowTitleElement extends Components.OsWindowTitle, HTMLStencilElement {
+    }
+    var HTMLOsWindowTitleElement: {
+        prototype: HTMLOsWindowTitleElement;
+        new (): HTMLOsWindowTitleElement;
+    };
     interface HTMLElementTagNameMap {
         "os-background-img": HTMLOsBackgroundImgElement;
         "os-desktop": HTMLOsDesktopElement;
@@ -81,6 +103,8 @@ declare global {
         "os-main": HTMLOsMainElement;
         "os-taskbar": HTMLOsTaskbarElement;
         "os-window": HTMLOsWindowElement;
+        "os-window-header-toolbar": HTMLOsWindowHeaderToolbarElement;
+        "os-window-title": HTMLOsWindowTitleElement;
     }
 }
 declare namespace LocalJSX {
@@ -113,6 +137,16 @@ declare namespace LocalJSX {
          */
         "controller"?: WindowController;
     }
+    interface OsWindowHeaderToolbar {
+    }
+    interface OsWindowTitle {
+        /**
+          * 标题
+          * @type {string}
+          * @memberof OsWindowTitle
+         */
+        "caption"?: string;
+    }
     interface IntrinsicElements {
         "os-background-img": OsBackgroundImg;
         "os-desktop": OsDesktop;
@@ -120,6 +154,8 @@ declare namespace LocalJSX {
         "os-main": OsMain;
         "os-taskbar": OsTaskbar;
         "os-window": OsWindow;
+        "os-window-header-toolbar": OsWindowHeaderToolbar;
+        "os-window-title": OsWindowTitle;
     }
 }
 export { LocalJSX as JSX };
@@ -132,6 +168,8 @@ declare module "@stencil/core" {
             "os-main": LocalJSX.OsMain & JSXBase.HTMLAttributes<HTMLOsMainElement>;
             "os-taskbar": LocalJSX.OsTaskbar & JSXBase.HTMLAttributes<HTMLOsTaskbarElement>;
             "os-window": LocalJSX.OsWindow & JSXBase.HTMLAttributes<HTMLOsWindowElement>;
+            "os-window-header-toolbar": LocalJSX.OsWindowHeaderToolbar & JSXBase.HTMLAttributes<HTMLOsWindowHeaderToolbarElement>;
+            "os-window-title": LocalJSX.OsWindowTitle & JSXBase.HTMLAttributes<HTMLOsWindowTitleElement>;
         }
     }
 }

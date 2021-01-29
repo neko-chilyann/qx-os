@@ -39,6 +39,10 @@ export class OsWindow implements ComponentInterface {
    */
   header: HTMLDivElement;
 
+  componentWillLoad() {
+    // this.controller.setComponent(this);
+  }
+
   componentDidLoad() {
     interact(this.header).draggable({
       modifiers: [
@@ -95,8 +99,8 @@ export class OsWindow implements ComponentInterface {
     return (
       <Host class='os-window'>
         <os-background-img />
-        <div class='os-window-header' ref={ref => (this.header = ref)} onClick={this.active}>
-          窗口头部
+        <div class='os-window-header' ref={ref => (this.header = ref)} onMouseDown={this.active}>
+          <os-window-title caption='窗口头部' />
         </div>
         <div class='os-window-content'>窗口内容</div>
       </Host>
