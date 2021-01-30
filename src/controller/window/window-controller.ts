@@ -55,19 +55,6 @@ export class WindowController extends ControllerBase {
    */
   readonly state = new WindowState();
 
-  // /**
-  //  * 打开窗口
-  //  *
-  //  * @param {HTMLElement} content
-  //  * @memberof WindowController
-  //  */
-  // open(content: HTMLElement) {
-  //   const el = document.createElement('os-window');
-  //   el.appendChild(content);
-  //   this.container.appendChild(el);
-  //   return el;
-  // }
-
   /**
    * 设置桌面控制器
    *

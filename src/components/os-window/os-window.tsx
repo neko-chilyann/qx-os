@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, ComponentInterface, Prop } from '@stencil/core';
+import { Component, Host, h, Element, ComponentInterface, Prop, forceUpdate } from '@stencil/core';
 import interact from 'interactjs';
 import { WindowController } from '../../controller';
 
@@ -37,14 +37,20 @@ export class OsWindow implements ComponentInterface {
    * @type {HTMLDivElement}
    * @memberof OsWindow
    */
-  header: HTMLDivElement;
+  dragHandle: HTMLDivElement;
 
-  componentWillLoad() {
-    // this.controller.setComponent(this);
+  connectedCallback(): void {
+    window.addEventListener('resize', this.browserResize);
   }
 
-  componentDidLoad() {
-    interact(this.header).draggable({
+  disconnectedCallback(): void {
+    window.removeEventListener('resize', this.browserResize);
+  }
+
+  componentDidLoad(): void {
+    const { state } = this.controller;
+    // 注册窗口拖拽
+    interact(this.dragHandle).draggable({
       modifiers: [
         interact.modifiers.restrictRect({
           restriction: '.os-desktop-content',
@@ -56,15 +62,14 @@ export class OsWindow implements ComponentInterface {
       },
       listeners: {
         move: event => {
-          const { state } = this.controller;
           // 计算偏移量保持位置
           state.x += event.dx;
           state.y += event.dy;
-          // 偏移样式设置
-          this.el.style.transform = `translate(${state.x}px, ${state.y}px)`;
+          this.setStyle();
         },
       },
     });
+    // 注册窗口大小变更
     interact(this.el).resizable({
       // 可拖拽的边缘
       edges: { top: true, right: true, bottom: true, left: true },
@@ -72,38 +77,104 @@ export class OsWindow implements ComponentInterface {
         // 保持在父对象内部
         interact.modifiers.restrictEdges({ outer: '.os-desktop-content' }),
         // 缩放最小宽度
-        interact.modifiers.restrictSize({ min: { width: 300, height: 200 } }),
+        interact.modifiers.restrictSize({ min: { width: state.minWidth, height: state.minHeight } }),
       ],
       inertia: true,
       listeners: {
         move: event => {
-          const target = event.target;
-          const { state } = this.controller;
           state.x += event.deltaRect.left;
           state.y += event.deltaRect.top;
           // 更新宽高
-          target.style.width = event.rect.width + 'px';
-          target.style.height = event.rect.height + 'px';
-          // 偏移样式设置
-          target.style.transform = `translate(${state.x}px, ${state.y}px)`;
+          state.width = event.rect.width;
+          state.height = event.rect.height;
+          this.setStyle();
         },
       },
     });
   }
 
+  /**
+   * 设置样式
+   *
+   * @memberof OsWindow
+   */
+  setStyle(): void {
+    Object.assign(this.el.style, this.calcStyle());
+  }
+
+  /**
+   * 计算窗口样式
+   *
+   * @memberof OsWindow
+   */
+  calcStyle(): any {
+    return {
+      transform: `translate(${this.controller.state.x}px, ${this.controller.state.y}px)`,
+      height: this.controller.state.height + 'px',
+      width: this.controller.state.width + 'px',
+    };
+  }
+
+  /**
+   * 浏览器大小变化
+   *
+   * @memberof OsWindow
+   */
+  browserResize = (): void => {
+    const { body } = document;
+    const { state } = this.controller;
+    if (body.offsetHeight - 50 < state.y) {
+      const num = body.offsetHeight - 60;
+      if (num > 0) {
+        state.y = num;
+      }
+    }
+    if (body.offsetWidth < state.x) {
+      let num = state.x;
+      if (state.width > body.offsetWidth) {
+        num = body.offsetWidth - 100;
+      } else {
+        num = body.offsetWidth - state.width;
+      }
+      if (num > 0) {
+        state.x = num;
+      }
+    }
+    this.setStyle();
+  };
+
+  /**
+   * 激活当前窗口
+   *
+   * @memberof OsWindow
+   */
   active = () => {
     this.controller.active();
   };
 
+  renderResizeLine() {
+    return [
+      <div class='resize-line top' />,
+      <div class='resize-line right' />,
+      <div class='resize-line bottom' />,
+      <div class='resize-line left' />
+    ];
+  }
+
   render() {
     return (
-      <Host class='os-window'>
+      <Host class={{ 'os-window': true, 'full-screen': this.controller.state.fullScreen }} style={this.calcStyle()}>
         <os-background-img />
-        <div class='os-window-header' ref={ref => (this.header = ref)} onMouseDown={this.active}>
+        <div class='os-window-header' onMouseDown={this.active}>
+          <div class='drag-handle' ref={ref => (this.dragHandle = ref)} />
           <os-window-title caption='窗口头部' />
         </div>
         <div class='os-window-content'>窗口内容</div>
       </Host>
     );
+  }
+
+  tick(): void {
+    forceUpdate(this);
   }
 }
