@@ -22,12 +22,14 @@
 
 - [os-background-img](../os-background-img)
 - [os-window-title](../os-window-title)
+- ion-icon
 
 ### Graph
 ```mermaid
 graph TD;
   os-window --> os-background-img
   os-window --> os-window-title
+  os-window --> ion-icon
   os-desktop --> os-window
   style os-window fill:#f9f,stroke:#333,stroke-width:4px
 ```

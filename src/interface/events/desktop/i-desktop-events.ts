@@ -15,4 +15,11 @@ export interface IDesktopEvents {
    * @memberof IDesktopEvents
    */
   activeWindow: WindowController;
+  /**
+   * 窗口销毁
+   *
+   * @type {void}
+   * @memberof IDesktopEvents
+   */
+  destroyWindow: void;
 }

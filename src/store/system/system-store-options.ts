@@ -8,6 +8,13 @@ import { DesktopController } from "../../controller";
  */
 export interface SystemStoreOptions {
   /**
+   * 背景图片
+   *
+   * @type {string}
+   * @memberof SystemStoreOptions
+   */
+  backgroundImage: string;
+  /**
    * 当前激活桌面
    *
    * @type {DesktopController}

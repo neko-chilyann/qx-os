@@ -25,6 +25,7 @@
   "dependencies": {
     "@stencil/core": "^2.4.0",
     "interactjs": "^1.10.2",
+    "ionicons": "^5.4.0",
     "qx-util": "^0.0.1",
     "ramda": "^0.27.1"
   },

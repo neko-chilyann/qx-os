@@ -48,49 +48,57 @@ export class OsWindow implements ComponentInterface {
   }
 
   componentDidLoad(): void {
-    const { state } = this.controller;
-    // 注册窗口拖拽
-    interact(this.dragHandle).draggable({
-      modifiers: [
-        interact.modifiers.restrictRect({
-          restriction: '.os-desktop-content',
-          endOnly: true,
-        }),
-      ],
-      cursorChecker: () => {
-        return 'default';
-      },
-      listeners: {
-        move: event => {
-          // 计算偏移量保持位置
-          state.x += event.dx;
-          state.y += event.dy;
-          this.setStyle();
+    if (this.controller) {
+      const { state } = this.controller;
+      // 注册窗口拖拽
+      interact(this.dragHandle).draggable({
+        modifiers: [
+          interact.modifiers.restrictRect({
+            restriction: '.os-desktop-content',
+            endOnly: true,
+          }),
+        ],
+        cursorChecker: () => {
+          return 'default';
         },
-      },
-    });
-    // 注册窗口大小变更
-    interact(this.el).resizable({
-      // 可拖拽的边缘
-      edges: { top: true, right: true, bottom: true, left: true },
-      modifiers: [
-        // 保持在父对象内部
-        interact.modifiers.restrictEdges({ outer: '.os-desktop-content' }),
-        // 缩放最小宽度
-        interact.modifiers.restrictSize({ min: { width: state.minWidth, height: state.minHeight } }),
-      ],
-      inertia: true,
-      listeners: {
-        move: event => {
-          state.x += event.deltaRect.left;
-          state.y += event.deltaRect.top;
-          // 更新宽高
-          state.width = event.rect.width;
-          state.height = event.rect.height;
-          this.setStyle();
+        listeners: {
+          move: event => {
+            // 计算偏移量保持位置
+            state.x += event.dx;
+            state.y += event.dy;
+            this.setStyle();
+          },
         },
-      },
-    });
+      });
+      // 注册窗口大小变更
+      interact(this.el).resizable({
+        // 可拖拽的边缘
+        edges: {
+          top: true,
+          right: true,
+          bottom: true,
+          left: true,
+        },
+        margin: 6,
+        modifiers: [
+          // 保持在父对象内部
+          interact.modifiers.restrictEdges({ outer: '.os-desktop-content' }),
+          // 缩放最小宽度
+          interact.modifiers.restrictSize({ min: { width: state.minWidth, height: state.minHeight } }),
+        ],
+        inertia: true,
+        listeners: {
+          move: event => {
+            state.x += event.deltaRect.left;
+            state.y += event.deltaRect.top;
+            // 更新宽高
+            state.width = event.rect.width;
+            state.height = event.rect.height;
+            this.setStyle();
+          },
+        },
+      });
+    }
   }
 
   /**
@@ -152,24 +160,64 @@ export class OsWindow implements ComponentInterface {
     this.controller.active();
   };
 
-  renderResizeLine() {
-    return [
-      <div class='resize-line top' />,
-      <div class='resize-line right' />,
-      <div class='resize-line bottom' />,
-      <div class='resize-line left' />
-    ];
-  }
+  /**
+   * 最小化窗口
+   *
+   * @param {MouseEvent} e
+   * @memberof OsWindow
+   */
+  minimizeWindow = (e: MouseEvent): void => {
+    e.stopPropagation();
+    this.controller.state.minimizeWindow = true;
+    this.tick();
+  };
+
+  /**
+   * 窗口全屏
+   *
+   * @param {MouseEvent} e
+   * @memberof OsWindow
+   */
+  fullScreenWindow = (e: MouseEvent): void => {
+    e.stopPropagation();
+    this.controller.state.fullScreen = !this.controller.state.fullScreen;
+    this.tick();
+  };
+
+  /**
+   * 关闭窗口
+   *
+   * @param {MouseEvent} e
+   * @memberof OsWindow
+   */
+  closeWindow = (e: MouseEvent): void => {
+    e.stopPropagation();
+    this.controller.close();
+  };
+
+  imgData;
 
   render() {
+    const { state } = this.controller;
     return (
-      <Host class={{ 'os-window': true, 'full-screen': this.controller.state.fullScreen }} style={this.calcStyle()}>
-        <os-background-img />
+      <Host class={{ 'os-window': true, 'full-screen': state.fullScreen }} style={this.calcStyle()}>
+        <os-background-img img={this.controller.store.backgroundImage} />
         <div class='os-window-header' onMouseDown={this.active}>
           <div class='drag-handle' ref={ref => (this.dragHandle = ref)} />
           <os-window-title caption='窗口头部' />
+          <div class='os-window-actions'>
+            <div class='os-window-action-item minimize' onClick={this.minimizeWindow}>
+              <ion-icon name='chevron-down' />
+            </div>
+            <div class='os-window-action-item full-screen' onClick={this.fullScreenWindow}>
+              {state.fullScreen ? <ion-icon name='contract' /> : <ion-icon name='expand' />}
+            </div>
+            <div class='os-window-action-item close'>
+              <ion-icon name='close' />
+            </div>
+          </div>
         </div>
-        <div class='os-window-content'>窗口内容</div>
+        <div class='os-window-content'>内容</div>
       </Host>
     );
   }

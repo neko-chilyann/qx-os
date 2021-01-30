@@ -9,7 +9,19 @@ import { WindowStoreOptions } from './window-store-options';
  * @extends {StoreBase}
  */
 export class WindowStore extends StoreBase {
-  protected readonly cache: WindowStoreOptions = {};
+  protected readonly cache: WindowStoreOptions = {
+    backgroundImage: './assets/images/default_bk_img.jpg'
+  };
+  /**
+   * 背景图片
+   *
+   * @readonly
+   * @type {string}
+   * @memberof WindowStore
+   */
+  get backgroundImage(): string {
+    return this.cache.backgroundImage;
+  }
 
   /**
    * 设置数据

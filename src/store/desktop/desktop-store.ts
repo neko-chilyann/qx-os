@@ -10,7 +10,9 @@ import { DesktopStoreOptions } from './desktop-store-options';
  * @extends {StoreBase}
  */
 export class DesktopStore extends StoreBase {
-  protected readonly cache: DesktopStoreOptions = {};
+  protected readonly cache: DesktopStoreOptions = {
+    backgroundImage: './assets/images/default_bk_img.jpg'
+  };
   /**
    * 所有桌面
    *
@@ -27,6 +29,16 @@ export class DesktopStore extends StoreBase {
    */
   get activeWindow(): WindowController {
     return this.cache.activeWindow;
+  }
+  /**
+   * 背景图片
+   *
+   * @readonly
+   * @type {string}
+   * @memberof DesktopStore
+   */
+  get backgroundImage(): string {
+    return this.cache.backgroundImage;
   }
 
   /**

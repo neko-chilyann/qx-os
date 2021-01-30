@@ -11,6 +11,7 @@ import { SystemStoreOptions } from './system-store-options';
  */
 export class SystemStore extends StoreBase {
   protected readonly cache: SystemStoreOptions = {
+    backgroundImage: './assets/images/default_bk_img.jpg',
     zIndex: 0,
   };
   /**
@@ -38,6 +39,16 @@ export class SystemStore extends StoreBase {
    */
   get zIndex(): number {
     return this.cache.zIndex;
+  }
+  /**
+   * 背景图片
+   *
+   * @readonly
+   * @type {string}
+   * @memberof SystemStore
+   */
+  get backgroundImage(): string {
+    return this.cache.backgroundImage;
   }
 
   /**

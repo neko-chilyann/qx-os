@@ -28,7 +28,7 @@ export class OsMain implements ComponentInterface {
   render() {
     const arr = [];
     this.sys.store.desktops.forEach(item => {
-      arr.push(<os-desktop key={item.uuid} controller={item}/>);
+      arr.push(<os-desktop key={item.uuid} controller={item} />);
     });
     return <Host class='os-main'>{arr}</Host>;
   }

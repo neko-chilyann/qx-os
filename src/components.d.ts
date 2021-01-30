@@ -9,10 +9,18 @@ import { DesktopController, WindowController } from "./controller";
 export namespace Components {
     interface OsBackgroundImg {
         /**
+          * 背景颜色
+          * @default 'black'
+          * @type {string}
+          * @memberof OsBackgroundImg
+         */
+        "color": string;
+        /**
           * 背景图片
           * @memberof OsBackgroundImg
          */
         "img": string;
+        "showMode": 'image' | 'color';
     }
     interface OsDesktop {
         /**
@@ -110,10 +118,18 @@ declare global {
 declare namespace LocalJSX {
     interface OsBackgroundImg {
         /**
+          * 背景颜色
+          * @default 'black'
+          * @type {string}
+          * @memberof OsBackgroundImg
+         */
+        "color"?: string;
+        /**
           * 背景图片
           * @memberof OsBackgroundImg
          */
         "img"?: string;
+        "showMode"?: 'image' | 'color';
     }
     interface OsDesktop {
         /**

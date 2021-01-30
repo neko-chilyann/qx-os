@@ -63,5 +63,13 @@ export class WindowState extends StateBase {
    * @type {boolean}
    * @memberof WindowState
    */
-  fullScreen = true;
+  fullScreen = false;
+  /**
+   * 最小化窗口
+   *
+   * @default false
+   * @type {boolean}
+   * @memberof WindowState
+   */
+  minimizeWindow = false;
 }

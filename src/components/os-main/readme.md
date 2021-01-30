@@ -21,6 +21,7 @@ graph TD;
   os-desktop --> os-taskbar
   os-window --> os-background-img
   os-window --> os-window-title
+  os-window --> ion-icon
   style os-main fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

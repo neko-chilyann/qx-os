@@ -7,9 +7,11 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default                                     |
-| -------- | --------- | ----------- | -------- | ------------------------------------------- |
-| `img`    | `img`     | 背景图片        | `string` | `'url(./assets/images/default_bk_img.jpg)'` |
+| Property   | Attribute   | Description | Type                 | Default     |
+| ---------- | ----------- | ----------- | -------------------- | ----------- |
+| `color`    | `color`     | 背景颜色        | `string`             | `'black'`   |
+| `img`      | `img`       | 背景图片        | `string`             | `undefined` |
+| `showMode` | `show-mode` |             | `"color" \| "image"` | `undefined` |
 
 
 ## Dependencies

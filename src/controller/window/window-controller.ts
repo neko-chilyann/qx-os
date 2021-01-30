@@ -73,4 +73,13 @@ export class WindowController extends ControllerBase {
   active(): void {
     this.desktop.activeWindow(this);
   }
+
+  /**
+   * 关闭窗口
+   *
+   * @memberof WindowController
+   */
+  close(): void {
+    this.desktop.destroyWindow(this);
+  }
 }

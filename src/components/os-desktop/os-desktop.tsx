@@ -10,7 +10,6 @@ import { DesktopController } from '../../controller';
 @Component({
   tag: 'os-desktop',
   styleUrl: 'os-desktop.scss',
-  shadow: true,
 })
 export class OsDesktop implements ComponentInterface {
   /**
@@ -23,18 +22,19 @@ export class OsDesktop implements ComponentInterface {
 
   connectedCallback(): void {
     this.controller.evt.on('activeWindow', this.activeWindow);
+    this.controller.evt.on('destroyWindow', this.destroyWindow);
   }
 
   disconnectedCallback(): void {
     this.controller.evt.off('activeWindow', this.activeWindow);
+    this.controller.evt.off('destroyWindow', this.destroyWindow);
   }
 
-  /**
-   * 窗口激活事件
-   *
-   * @memberof OsDesktop
-   */
   activeWindow = (): void => {
+    forceUpdate(this);
+  };
+
+  destroyWindow = (): void => {
     forceUpdate(this);
   };
 
@@ -44,15 +44,15 @@ export class OsDesktop implements ComponentInterface {
 
   render() {
     const zIndex = sys.store.zIndex;
-    const list = Array.from(this.controller.store.windows);
+    const { store } = this.controller;
+    const list = Array.from(store.windows);
     const arr = list.map(([_key, item], i) => {
-      const index =
-        this.controller.store.activeWindow.uuid === item.uuid ? zIndex : ((zIndex - list.length + i) as any);
+      const index = store.activeWindow.uuid === item.uuid ? zIndex : ((zIndex - list.length + i) as any);
       return <os-window key={item.uuid} controller={item} style={{ zIndex: index }} />;
     });
     return (
       <Host class='os-desktop'>
-        <os-background-img />
+        <os-background-img img={store.backgroundImage} />
         <div class='os-desktop-container'>
           <div class='os-desktop-content'>
             <button onClick={this.addWindow}>添加window</button>
