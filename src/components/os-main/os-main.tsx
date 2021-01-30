@@ -22,6 +22,7 @@ export class OsMain implements ComponentInterface {
   sys: SystemController = window.sys;
 
   componentWillLoad() {
+    this.sys.setComponent(this);
     this.sys.createDesktop();
   }
 

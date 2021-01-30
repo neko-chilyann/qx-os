@@ -1,8 +1,9 @@
+import { notNilEmpty } from 'qx-util';
 import { WindowContext } from '../../context';
 import { IWindowEvents } from '../../interface';
+import { WindowOptions } from '../../options';
 import { WindowState } from '../../state';
 import { WindowStore } from '../../store';
-import { OSEvent } from '../../utils';
 import { ControllerBase } from '../base/controller-base';
 import { DesktopController } from '../desktop/desktop-controller';
 
@@ -13,7 +14,7 @@ import { DesktopController } from '../desktop/desktop-controller';
  * @class WindowController
  * @extends {ControllerBase}
  */
-export class WindowController extends ControllerBase {
+export class WindowController extends ControllerBase<WindowStore, WindowState, WindowContext, IWindowEvents> {
   /**
    * 窗口上下文
    *
@@ -30,30 +31,31 @@ export class WindowController extends ControllerBase {
    * @memberof WindowController
    */
   protected desktop: DesktopController;
+
+  init(): void {
+    this._context = new WindowContext();
+    this._store = new WindowStore();
+    this._state = new WindowState();
+  }
+
   /**
-   * 系统事件
+   * 设置配置参数
    *
-   * @memberof WindowController
+   * @param {WindowOptions} [opts]
+   * @memberof ControllerBase
    */
-  readonly evt = new OSEvent<IWindowEvents>();
-  /**
-   * 窗口上下文
-   *
-   * @memberof WindowController
-   */
-  readonly context = new WindowContext();
-  /**
-   * 窗口数据存储
-   *
-   * @memberof WindowController
-   */
-  readonly store = new WindowStore();
-  /**
-   * 窗口状态
-   *
-   * @memberof WindowController
-   */
-  readonly state = new WindowState();
+  setOptions(opts?: WindowOptions): void {
+    if (opts) {
+      Object.assign(this._options, opts);
+      const o = this._options as WindowOptions;
+      if (notNilEmpty(o.title)) {
+        this.store.title = o.title;
+      }
+      if (notNilEmpty(o.fullScreen)) {
+        this.state.fullScreen = o.fullScreen;
+      }
+    }
+  }
 
   /**
    * 设置桌面控制器

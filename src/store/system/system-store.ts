@@ -1,6 +1,5 @@
 import { DesktopController } from '../../controller';
 import { StoreBase } from '../base/store-base';
-import { SystemStoreOptions } from './system-store-options';
 
 /**
  * 系统数据存储
@@ -10,10 +9,6 @@ import { SystemStoreOptions } from './system-store-options';
  * @extends {StoreBase}
  */
 export class SystemStore extends StoreBase {
-  protected readonly cache: SystemStoreOptions = {
-    backgroundImage: './assets/images/default_bk_img.jpg',
-    zIndex: 0,
-  };
   /**
    * 所有桌面
    *
@@ -27,9 +22,7 @@ export class SystemStore extends StoreBase {
    * @readonly
    * @memberof SystemStore
    */
-  get activeDesktop() {
-    return this.cache.activateDesktop;
-  }
+  activeDesktop: DesktopController;
   /**
    * 当前激活最高层级
    *
@@ -37,9 +30,7 @@ export class SystemStore extends StoreBase {
    * @type {number}
    * @memberof SystemStore
    */
-  get zIndex(): number {
-    return this.cache.zIndex;
-  }
+  zIndex = 0;
   /**
    * 背景图片
    *
@@ -47,9 +38,7 @@ export class SystemStore extends StoreBase {
    * @type {string}
    * @memberof SystemStore
    */
-  get backgroundImage(): string {
-    return this.cache.backgroundImage;
-  }
+  backgroundImage = './assets/images/default_bk_img.jpg';
 
   /**
    * 新增桌面
@@ -79,7 +68,7 @@ export class SystemStore extends StoreBase {
    * @memberof SystemStore
    */
   setActiveDesktop(desktop: DesktopController): void {
-    this.cache.activateDesktop = desktop;
+    this.activeDesktop = desktop;
   }
 
   /**
@@ -89,7 +78,7 @@ export class SystemStore extends StoreBase {
    * @memberof SystemStore
    */
   setZIndex(i: number): void {
-    this.cache.zIndex = i;
+    this.zIndex = i;
   }
 
   /**
@@ -99,8 +88,8 @@ export class SystemStore extends StoreBase {
    * @memberof SystemStore
    */
   zIndexIncrease(): number {
-    this.cache.zIndex += 10;
-    return this.cache.zIndex;
+    this.zIndex += 10;
+    return this.zIndex;
   }
 
   /**
@@ -110,31 +99,7 @@ export class SystemStore extends StoreBase {
    * @memberof SystemStore
    */
   zIndexReduce(): number {
-    this.cache.zIndex -= 10;
-    return this.cache.zIndex;
-  }
-
-  /**
-   * 设置数据
-   *
-   * @template K
-   * @param {K} key
-   * @param {SystemStoreOptions[K]} val
-   * @memberof SystemStore
-   */
-  set<K extends keyof SystemStoreOptions>(key: K, val: SystemStoreOptions[K]): void {
-    this.cache[key] = val;
-  }
-
-  /**
-   * 获取数据
-   *
-   * @template K
-   * @param {K} key
-   * @return {*}  {SystemStoreOptions[K]}
-   * @memberof SystemStore
-   */
-  get<K extends keyof SystemStoreOptions>(key: K): SystemStoreOptions[K] {
-    return this.cache[key];
+    this.zIndex -= 10;
+    return this.zIndex;
   }
 }

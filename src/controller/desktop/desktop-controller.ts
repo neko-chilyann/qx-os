@@ -5,7 +5,6 @@ import { DesktopStore } from '../../store';
 import { DesktopState } from '../../state';
 import { WindowController } from '../window/window-controller';
 import { WindowOptions } from '../../options';
-import { OSEvent } from '../../utils';
 import { IDesktopEvents } from '../../interface';
 
 /**
@@ -15,15 +14,7 @@ import { IDesktopEvents } from '../../interface';
  * @class DesktopController
  * @extends {ControllerBase}
  */
-export class DesktopController extends ControllerBase {
-  /**
-   * 桌面上下文
-   *
-   * @protected
-   * @type {DesktopContext}
-   * @memberof DesktopController
-   */
-  protected readonly ctx: DesktopContext;
+export class DesktopController extends ControllerBase<DesktopStore, DesktopState, DesktopContext, IDesktopEvents> {
   /**
    * 系统控制器
    *
@@ -33,30 +24,6 @@ export class DesktopController extends ControllerBase {
    */
   protected sys: SystemController;
   /**
-   * 系统事件
-   *
-   * @memberof DesktopController
-   */
-  readonly evt = new OSEvent<IDesktopEvents>();
-  /**
-   * 桌面上下文
-   *
-   * @memberof DesktopController
-   */
-  readonly context = new DesktopContext();
-  /**
-   * 桌面数据存储
-   *
-   * @memberof DesktopController
-   */
-  readonly store = new DesktopStore();
-  /**
-   * 桌面状态
-   *
-   * @memberof DesktopController
-   */
-  readonly state = new DesktopState();
-  /**
    * 当前激活窗口
    *
    * @readonly
@@ -65,6 +32,12 @@ export class DesktopController extends ControllerBase {
    */
   get window(): WindowController {
     return this.store.activeWindow;
+  }
+
+  init(): void {
+    this._context = new DesktopContext();
+    this._store = new DesktopStore();
+    this._state = new DesktopState();
   }
 
   /**
@@ -86,7 +59,7 @@ export class DesktopController extends ControllerBase {
    */
   createWindow(_opt?: WindowOptions): WindowController {
     sys.store.zIndexIncrease();
-    const win = new WindowController();
+    const win = new WindowController(_opt);
     win.setDesktopController(this);
     this.store.addWindow(win);
     this.activeWindow(win);
@@ -102,6 +75,7 @@ export class DesktopController extends ControllerBase {
   destroyWindow(window: WindowController): void {
     sys.store.zIndexReduce();
     this.store.destroyWindow(window);
+    this.tick();
   }
 
   /**
@@ -111,7 +85,7 @@ export class DesktopController extends ControllerBase {
    * @memberof DesktopController
    */
   activeWindow(window: WindowController): void {
-    this.store.set('activeWindow', window);
-    this.evt.emit('activeWindow', window);
+    this.store.activeWindow = window;
+    this.tick();
   }
 }

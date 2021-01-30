@@ -1,5 +1,4 @@
 import { ControllerBase } from '../base/controller-base';
-import { OSEvent } from '../../utils';
 import { ISystemEvents } from '../../interface';
 import { SystemContext } from '../../context';
 import { SystemStore } from '../../store';
@@ -14,7 +13,7 @@ import { DesktopOptions } from '../../options';
  * @class SystemController
  * @extends {ControllerBase}
  */
-export class SystemController extends ControllerBase {
+export class SystemController extends ControllerBase<SystemStore, SystemState, SystemContext, ISystemEvents> {
   /**
    * 唯一实例
    *
@@ -23,38 +22,6 @@ export class SystemController extends ControllerBase {
    * @memberof SystemController
    */
   private static readonly instance = new SystemController();
-  /**
-   * 系统事件
-   *
-   * @memberof SystemController
-   */
-  readonly evt = new OSEvent<ISystemEvents>();
-  /**
-   * 系统上下文
-   *
-   * @protected
-   * @type {SystemContext}
-   * @memberof SystemController
-   */
-  protected readonly ctx: SystemContext;
-  /**
-   * 系统上下文
-   *
-   * @memberof SystemController
-   */
-  readonly context = new SystemContext();
-  /**
-   * 系统数据存储
-   *
-   * @memberof SystemController
-   */
-  readonly store = new SystemStore();
-  /**
-   * 系统状态存储
-   *
-   * @memberof SystemController
-   */
-  readonly state = new SystemState();
   /**
    * 当前激活桌面
    *
@@ -68,13 +35,20 @@ export class SystemController extends ControllerBase {
 
   /**
    * Creates an instance of SystemController.
+   * @param {*} [opts]
    * @memberof SystemController
    */
-  constructor() {
-    super();
+  constructor(opts?: any) {
+    super(opts);
     if (SystemController.instance) {
       return SystemController.instance;
     }
+  }
+
+  init(): void {
+    this._context = new SystemContext();
+    this._store = new SystemStore();
+    this._state = new SystemState();
   }
 
   /**

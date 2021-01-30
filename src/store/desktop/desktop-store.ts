@@ -1,6 +1,5 @@
 import { WindowController } from '../../controller';
 import { StoreBase } from '../base/store-base';
-import { DesktopStoreOptions } from './desktop-store-options';
 
 /**
  * 桌面数据存储
@@ -10,9 +9,6 @@ import { DesktopStoreOptions } from './desktop-store-options';
  * @extends {StoreBase}
  */
 export class DesktopStore extends StoreBase {
-  protected readonly cache: DesktopStoreOptions = {
-    backgroundImage: './assets/images/default_bk_img.jpg'
-  };
   /**
    * 所有桌面
    *
@@ -27,9 +23,7 @@ export class DesktopStore extends StoreBase {
    * @type {WindowController}
    * @memberof DesktopStore
    */
-  get activeWindow(): WindowController {
-    return this.cache.activeWindow;
-  }
+  activeWindow: WindowController;
   /**
    * 背景图片
    *
@@ -37,9 +31,7 @@ export class DesktopStore extends StoreBase {
    * @type {string}
    * @memberof DesktopStore
    */
-  get backgroundImage(): string {
-    return this.cache.backgroundImage;
-  }
+  backgroundImage = './assets/images/default_bk_img.jpg';
 
   /**
    * 新增窗口
@@ -59,29 +51,5 @@ export class DesktopStore extends StoreBase {
    */
   destroyWindow(window: WindowController): void {
     this.windows.delete(window.uuid);
-  }
-
-  /**
-   * 设置数据
-   *
-   * @template K
-   * @param {K} key
-   * @param {DesktopStoreOptions[K]} val
-   * @memberof DesktopStore
-   */
-  set<K extends keyof DesktopStoreOptions>(key: K, val: DesktopStoreOptions[K]): void {
-    this.cache[key] = val;
-  }
-
-  /**
-   * 获取数据
-   *
-   * @template K
-   * @param {K} key
-   * @return {*}  {DesktopStoreOptions[K]}
-   * @memberof DesktopStore
-   */
-  get<K extends keyof DesktopStoreOptions>(key: K): DesktopStoreOptions[K] {
-    return this.cache[key];
   }
 }

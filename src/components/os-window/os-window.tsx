@@ -47,6 +47,10 @@ export class OsWindow implements ComponentInterface {
     window.removeEventListener('resize', this.browserResize);
   }
 
+  componentWillLoad(): void {
+    this.controller.setComponent(this);
+  }
+
   componentDidLoad(): void {
     if (this.controller) {
       const { state } = this.controller;
@@ -195,8 +199,6 @@ export class OsWindow implements ComponentInterface {
     this.controller.close();
   };
 
-  imgData;
-
   render() {
     const { state } = this.controller;
     return (
@@ -204,7 +206,7 @@ export class OsWindow implements ComponentInterface {
         <os-background-img img={this.controller.store.backgroundImage} />
         <div class='os-window-header' onMouseDown={this.active}>
           <div class='drag-handle' ref={ref => (this.dragHandle = ref)} />
-          <os-window-title caption='窗口头部' />
+          <os-window-title caption={this.controller.store.title} />
           <div class='os-window-actions'>
             <div class='os-window-action-item minimize' onClick={this.minimizeWindow}>
               <ion-icon name='chevron-down' />

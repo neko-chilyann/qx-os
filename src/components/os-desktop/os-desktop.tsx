@@ -1,4 +1,4 @@
-import { Component, Host, h, ComponentInterface, Prop, forceUpdate } from '@stencil/core';
+import { Component, Host, h, ComponentInterface, Prop } from '@stencil/core';
 import { DesktopController } from '../../controller';
 
 /**
@@ -20,26 +20,12 @@ export class OsDesktop implements ComponentInterface {
   @Prop()
   controller: DesktopController;
 
-  connectedCallback(): void {
-    this.controller.evt.on('activeWindow', this.activeWindow);
-    this.controller.evt.on('destroyWindow', this.destroyWindow);
+  componentWillLoad(): void {
+    this.controller.setComponent(this);
   }
-
-  disconnectedCallback(): void {
-    this.controller.evt.off('activeWindow', this.activeWindow);
-    this.controller.evt.off('destroyWindow', this.destroyWindow);
-  }
-
-  activeWindow = (): void => {
-    forceUpdate(this);
-  };
-
-  destroyWindow = (): void => {
-    forceUpdate(this);
-  };
 
   addWindow = () => {
-    this.controller.createWindow();
+    this.controller.createWindow({ title: '标题!' });
   };
 
   render() {
