@@ -9,6 +9,14 @@ import { StoreBase } from '../base/store-base';
  */
 export class WindowStore extends StoreBase {
   /**
+   * 当前显示层级
+   *
+   * @default 10
+   * @type {number}
+   * @memberof WindowStore
+   */
+  zIndex = 10;
+  /**
    * 标题
    *
    * @type {string}

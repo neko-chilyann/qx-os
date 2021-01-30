@@ -119,11 +119,27 @@ export class ControllerBase<
   }
 
   /**
+   * 注册事件
+   *
+   * @memberof ControllerBase
+   */
+  registerEvents(): void {}
+
+  /**
+   * 销毁事件
+   *
+   * @memberof ControllerBase
+   */
+  unRegisterEvents(): void {}
+
+  /**
    * 组件更新
    *
    * @memberof ControllerBase
    */
   tick(): void {
-    forceUpdate(this._component);
+    if (this._component) {
+      forceUpdate(this._component);
+    }
   }
 }

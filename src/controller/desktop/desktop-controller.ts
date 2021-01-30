@@ -67,8 +67,9 @@ export class DesktopController extends ControllerBase<DesktopStore, DesktopState
    * @memberof DesktopController
    */
   createWindow(_opt?: WindowOptions): WindowController {
-    sys.store.zIndexIncrease();
+    const zIndex = sys.store.zIndexIncrease();
     const win = new WindowController(_opt);
+    win.store.zIndex = zIndex;
     win.setDesktopController(this);
     this.store.addWindow(win);
     this.activeWindow(win);
@@ -84,6 +85,7 @@ export class DesktopController extends ControllerBase<DesktopStore, DesktopState
   destroyWindow(window: WindowController): void {
     sys.store.zIndexReduce();
     this.store.destroyWindow(window);
+    this.evt.emit('destroyWindow', window);
     this.tick();
   }
 
@@ -95,6 +97,9 @@ export class DesktopController extends ControllerBase<DesktopStore, DesktopState
    */
   activeWindow(window: WindowController): void {
     this.store.activeWindow = window;
+    this.evt.emit('activeWindow', window);
+    this.store.addHistory(window);
+    this.store.calcHistoryZIndex(this.sys.store.zIndex);
     this.tick();
   }
 }

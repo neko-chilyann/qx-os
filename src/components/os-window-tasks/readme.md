@@ -1,4 +1,4 @@
-# os-taskbar
+# os-window-tasks
 
 
 
@@ -16,18 +16,13 @@
 
 ### Used by
 
- - [os-desktop](../os-desktop)
-
-### Depends on
-
-- [os-window-tasks](../os-window-tasks)
+ - [os-taskbar](../os-taskbar)
 
 ### Graph
 ```mermaid
 graph TD;
   os-taskbar --> os-window-tasks
-  os-desktop --> os-taskbar
-  style os-taskbar fill:#f9f,stroke:#333,stroke-width:4px
+  style os-window-tasks fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

@@ -1,0 +1,58 @@
+@import '../../themes/os.globals.scss';
+
+.os-window-tasks {
+  display: block;
+  height: 100%;
+
+  .os-window-task-list {
+    height: 100%;
+    display: flex;
+  }
+
+  .os-window-task-item {
+    position: relative;
+    cursor: pointer;
+    margin: 0px 1px;
+    width: 160px;
+
+    .task-icon,
+    .task-label {
+      float: left;
+      height: 100%;
+    }
+
+    .task-icon {
+      padding: 0px 3px;
+      font-size: 20px;
+      width: 26px;
+      display: flex;
+      align-items: center;
+    }
+
+    .task-label {
+      width: calc(100% - 26px);
+      padding: 5px 3px;
+    }
+  }
+
+  .os-window-task-item.os-window-active,
+  .os-window-task-item:hover {
+    background-color: current-color(tint);
+  }
+
+  .os-window-task-item::after {
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 100%;
+    z-index: 1;
+    left: 0;
+    bottom: 0;
+    border-bottom: 2px solid current-color(contrast, 0.6);
+  }
+
+  .os-window-task-item:hover::after,
+  .os-window-task-item.os-window-active::after {
+    border-bottom-color: current-color(contrast, 0.8);
+  }
+}

@@ -40,10 +40,12 @@ export class OsWindow implements ComponentInterface {
 
   connectedCallback(): void {
     window.addEventListener('resize', this.browserResize);
+    this.controller.registerEvents();
   }
 
   disconnectedCallback(): void {
     window.removeEventListener('resize', this.browserResize);
+    this.controller.unregisterEvents();
   }
 
   componentWillLoad(): void {
@@ -155,6 +157,15 @@ export class OsWindow implements ComponentInterface {
   };
 
   /**
+   * 激活窗口变更
+   *
+   * @memberof OsWindow
+   */
+  activeChange = (): void => {
+    forceUpdate(this);
+  };
+
+  /**
    * 激活当前窗口
    *
    * @memberof OsWindow
@@ -202,7 +213,12 @@ export class OsWindow implements ComponentInterface {
     const { state } = this.controller;
     return (
       <Host
-        class={{ 'os-window': true, 'full-screen': state.fullScreen, 'os-hide': state.minimizeWindow }}
+        class={{
+          'os-window': true,
+          'os-window-active': this.controller.isActive,
+          'full-screen': state.fullScreen,
+          'os-hide': state.minimizeWindow,
+        }}
         style={this.calcStyle()}
       >
         <os-background-img img={this.controller.store.backgroundImage} />

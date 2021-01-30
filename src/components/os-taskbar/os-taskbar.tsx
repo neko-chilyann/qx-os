@@ -12,10 +12,20 @@ import { DesktopController } from '../../controller';
   styleUrl: 'os-taskbar.scss',
 })
 export class OsTaskbar {
+  /**
+   * 桌面控制器
+   *
+   * @type {DesktopController}
+   * @memberof OsTaskbar
+   */
   @Prop()
   desktop: DesktopController;
 
   render() {
-    return <Host class='os-taskbar'>任务栏</Host>;
+    return (
+      <Host class='os-taskbar'>
+        <os-window-tasks desktop={this.desktop} />
+      </Host>
+    );
   }
 }

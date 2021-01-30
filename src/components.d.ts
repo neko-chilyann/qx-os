@@ -35,6 +35,11 @@ export namespace Components {
     interface OsMain {
     }
     interface OsTaskbar {
+        /**
+          * 桌面控制器
+          * @type {DesktopController}
+          * @memberof OsTaskbar
+         */
         "desktop": DesktopController;
     }
     interface OsWindow {
@@ -45,6 +50,14 @@ export namespace Components {
         "controller": WindowController;
     }
     interface OsWindowHeaderToolbar {
+    }
+    interface OsWindowTasks {
+        /**
+          * 桌面控制器
+          * @type {DesktopController}
+          * @memberof OsTaskbar
+         */
+        "desktop": DesktopController;
     }
     interface OsWindowTitle {
         /**
@@ -98,6 +111,12 @@ declare global {
         prototype: HTMLOsWindowHeaderToolbarElement;
         new (): HTMLOsWindowHeaderToolbarElement;
     };
+    interface HTMLOsWindowTasksElement extends Components.OsWindowTasks, HTMLStencilElement {
+    }
+    var HTMLOsWindowTasksElement: {
+        prototype: HTMLOsWindowTasksElement;
+        new (): HTMLOsWindowTasksElement;
+    };
     interface HTMLOsWindowTitleElement extends Components.OsWindowTitle, HTMLStencilElement {
     }
     var HTMLOsWindowTitleElement: {
@@ -112,6 +131,7 @@ declare global {
         "os-taskbar": HTMLOsTaskbarElement;
         "os-window": HTMLOsWindowElement;
         "os-window-header-toolbar": HTMLOsWindowHeaderToolbarElement;
+        "os-window-tasks": HTMLOsWindowTasksElement;
         "os-window-title": HTMLOsWindowTitleElement;
     }
 }
@@ -144,6 +164,11 @@ declare namespace LocalJSX {
     interface OsMain {
     }
     interface OsTaskbar {
+        /**
+          * 桌面控制器
+          * @type {DesktopController}
+          * @memberof OsTaskbar
+         */
         "desktop"?: DesktopController;
     }
     interface OsWindow {
@@ -154,6 +179,14 @@ declare namespace LocalJSX {
         "controller"?: WindowController;
     }
     interface OsWindowHeaderToolbar {
+    }
+    interface OsWindowTasks {
+        /**
+          * 桌面控制器
+          * @type {DesktopController}
+          * @memberof OsTaskbar
+         */
+        "desktop"?: DesktopController;
     }
     interface OsWindowTitle {
         /**
@@ -171,6 +204,7 @@ declare namespace LocalJSX {
         "os-taskbar": OsTaskbar;
         "os-window": OsWindow;
         "os-window-header-toolbar": OsWindowHeaderToolbar;
+        "os-window-tasks": OsWindowTasks;
         "os-window-title": OsWindowTitle;
     }
 }
@@ -185,6 +219,7 @@ declare module "@stencil/core" {
             "os-taskbar": LocalJSX.OsTaskbar & JSXBase.HTMLAttributes<HTMLOsTaskbarElement>;
             "os-window": LocalJSX.OsWindow & JSXBase.HTMLAttributes<HTMLOsWindowElement>;
             "os-window-header-toolbar": LocalJSX.OsWindowHeaderToolbar & JSXBase.HTMLAttributes<HTMLOsWindowHeaderToolbarElement>;
+            "os-window-tasks": LocalJSX.OsWindowTasks & JSXBase.HTMLAttributes<HTMLOsWindowTasksElement>;
             "os-window-title": LocalJSX.OsWindowTitle & JSXBase.HTMLAttributes<HTMLOsWindowTitleElement>;
         }
     }

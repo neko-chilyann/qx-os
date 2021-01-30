@@ -29,12 +29,10 @@ export class OsDesktop implements ComponentInterface {
   };
 
   render() {
-    const zIndex = sys.store.zIndex;
     const { store } = this.controller;
-    const list = Array.from(store.windows);
-    const arr = list.map(([_key, item], i) => {
-      const index = store.activeWindow.uuid === item.uuid ? zIndex : ((zIndex - list.length + i) as any);
-      return <os-window key={item.uuid} controller={item} style={{ zIndex: index }} />;
+    const arr = [];
+    store.windows.forEach(item => {
+      arr.push(<os-window key={item.uuid} controller={item} style={{ 'z-index': item.store.zIndex as any }} />);
     });
     return (
       <Host class='os-desktop'>

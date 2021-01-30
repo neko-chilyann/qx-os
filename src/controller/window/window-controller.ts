@@ -31,6 +31,16 @@ export class WindowController extends ControllerBase<WindowStore, WindowState, W
    * @memberof WindowController
    */
   protected desktop: DesktopController;
+  /**
+   * 是否已激活
+   *
+   * @readonly
+   * @type {boolean}
+   * @memberof WindowController
+   */
+  get isActive(): boolean {
+    return this.desktop.store.activeWindow.uuid === this.uuid;
+  }
 
   /**
    * Creates an instance of WindowController.
@@ -51,7 +61,7 @@ export class WindowController extends ControllerBase<WindowStore, WindowState, W
    * 设置配置参数
    *
    * @param {WindowOptions} [opts]
-   * @memberof ControllerBase
+   * @memberof WindowController
    */
   setOptions(opts?: WindowOptions): void {
     if (opts) {
@@ -63,8 +73,36 @@ export class WindowController extends ControllerBase<WindowStore, WindowState, W
       if (notNilEmpty(o.fullScreen)) {
         this.state.fullScreen = o.fullScreen;
       }
+      this.tick();
     }
   }
+
+  /**
+   * 注册事件
+   *
+   * @memberof WindowController
+   */
+  registerEvents(): void {
+    this.desktop.evt.on('activeWindow', this.activeChange);
+  }
+
+  /**
+   * 销毁事件
+   *
+   * @memberof WindowController
+   */
+  unregisterEvents(): void {
+    this.desktop.evt.off('activeWindow', this.activeChange);
+  }
+
+  /**
+   * 激活窗口变更
+   *
+   * @memberof WindowController
+   */
+  activeChange = (): void => {
+    this.tick();
+  };
 
   /**
    * 设置桌面控制器
