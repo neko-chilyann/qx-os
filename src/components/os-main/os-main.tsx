@@ -10,7 +10,6 @@ import { SystemController } from '../../controller';
 @Component({
   tag: 'os-main',
   styleUrl: 'os-main.scss',
-  shadow: true,
 })
 export class OsMain implements ComponentInterface {
   /**

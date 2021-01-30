@@ -9,7 +9,6 @@ import { Component, Host, h } from '@stencil/core';
 @Component({
   tag: 'os-window-header-toolbar',
   styleUrl: 'os-window-header-toolbar.scss',
-  shadow: true,
 })
 export class OsWindowHeaderToolbar {
   render() {

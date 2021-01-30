@@ -11,7 +11,6 @@ import { WindowController } from '../../controller';
 @Component({
   tag: 'os-window',
   styleUrl: 'os-window.scss',
-  shadow: true,
 })
 export class OsWindow implements ComponentInterface {
   /**
@@ -202,7 +201,10 @@ export class OsWindow implements ComponentInterface {
   render() {
     const { state } = this.controller;
     return (
-      <Host class={{ 'os-window': true, 'full-screen': state.fullScreen }} style={this.calcStyle()}>
+      <Host
+        class={{ 'os-window': true, 'full-screen': state.fullScreen, 'os-hide': state.minimizeWindow }}
+        style={this.calcStyle()}
+      >
         <os-background-img img={this.controller.store.backgroundImage} />
         <div class='os-window-header' onMouseDown={this.active}>
           <div class='drag-handle' ref={ref => (this.dragHandle = ref)} />

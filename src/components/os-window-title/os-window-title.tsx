@@ -9,7 +9,6 @@ import { Component, Host, h, Prop } from '@stencil/core';
 @Component({
   tag: 'os-window-title',
   styleUrl: 'os-window-title.scss',
-  shadow: true,
 })
 export class OsWindowTitle {
   /**

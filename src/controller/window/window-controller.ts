@@ -32,6 +32,15 @@ export class WindowController extends ControllerBase<WindowStore, WindowState, W
    */
   protected desktop: DesktopController;
 
+  /**
+   * Creates an instance of WindowController.
+   * @param {WindowOptions} [opts]
+   * @memberof WindowController
+   */
+  constructor(opts?: WindowOptions) {
+    super(opts);
+  }
+
   init(): void {
     this._context = new WindowContext();
     this._store = new WindowStore();

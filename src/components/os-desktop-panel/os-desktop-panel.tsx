@@ -10,7 +10,6 @@ import { DesktopController } from '../../controller';
 @Component({
   tag: 'os-desktop-panel',
   styleUrl: 'os-desktop-panel.scss',
-  shadow: true,
 })
 export class OsDesktopPanel {
   @Prop()

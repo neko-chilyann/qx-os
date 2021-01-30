@@ -10,7 +10,6 @@ import { DesktopController } from '../../controller';
 @Component({
   tag: 'os-taskbar',
   styleUrl: 'os-taskbar.scss',
-  shadow: true,
 })
 export class OsTaskbar {
   @Prop()

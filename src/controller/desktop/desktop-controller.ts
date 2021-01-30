@@ -4,7 +4,7 @@ import { DesktopContext } from '../../context';
 import { DesktopStore } from '../../store';
 import { DesktopState } from '../../state';
 import { WindowController } from '../window/window-controller';
-import { WindowOptions } from '../../options';
+import { DesktopOptions, WindowOptions } from '../../options';
 import { IDesktopEvents } from '../../interface';
 
 /**
@@ -32,6 +32,15 @@ export class DesktopController extends ControllerBase<DesktopStore, DesktopState
    */
   get window(): WindowController {
     return this.store.activeWindow;
+  }
+
+  /**
+   * Creates an instance of DesktopController.
+   * @param {DesktopOptions} [opts]
+   * @memberof DesktopController
+   */
+  constructor(opts?: DesktopOptions) {
+    super(opts);
   }
 
   init(): void {

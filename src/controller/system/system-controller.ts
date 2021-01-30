@@ -4,7 +4,7 @@ import { SystemContext } from '../../context';
 import { SystemStore } from '../../store';
 import { SystemState } from '../../state';
 import { DesktopController } from '../desktop/desktop-controller';
-import { DesktopOptions } from '../../options';
+import { DesktopOptions, SystemOptions } from '../../options';
 
 /**
  * 系统控制器
@@ -35,10 +35,10 @@ export class SystemController extends ControllerBase<SystemStore, SystemState, S
 
   /**
    * Creates an instance of SystemController.
-   * @param {*} [opts]
+   * @param {SystemOptions} [opts]
    * @memberof SystemController
    */
-  constructor(opts?: any) {
+  constructor(opts?: SystemOptions) {
     super(opts);
     if (SystemController.instance) {
       return SystemController.instance;

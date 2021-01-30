@@ -10,7 +10,6 @@ import { isNilOrEmpty, notNilEmpty } from 'qx-util';
 @Component({
   tag: 'os-background-img',
   styleUrl: 'os-background-img.scss',
-  shadow: true,
 })
 export class OsBackgroundImg implements ComponentInterface {
   /**
@@ -57,8 +56,8 @@ export class OsBackgroundImg implements ComponentInterface {
       style['background-color'] = this.color;
     }
     return (
-      <Host class='os-background-img-wrapper'>
-        <div class='os-background-img' style={style} />
+      <Host class='os-background-img'>
+        <div class='os-background-img-container' style={style} />
       </Host>
     );
   }
