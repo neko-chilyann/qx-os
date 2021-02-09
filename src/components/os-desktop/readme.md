@@ -36,6 +36,7 @@ graph TD;
   os-window --> os-window-title
   os-window --> ion-icon
   os-taskbar --> os-window-tasks
+  os-window-tasks --> ion-icon
   os-main --> os-desktop
   style os-desktop fill:#f9f,stroke:#333,stroke-width:4px
 ```

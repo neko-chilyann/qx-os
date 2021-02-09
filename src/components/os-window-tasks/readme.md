@@ -18,9 +18,14 @@
 
  - [os-taskbar](../os-taskbar)
 
+### Depends on
+
+- ion-icon
+
 ### Graph
 ```mermaid
 graph TD;
+  os-window-tasks --> ion-icon
   os-taskbar --> os-window-tasks
   style os-window-tasks fill:#f9f,stroke:#333,stroke-width:4px
 ```

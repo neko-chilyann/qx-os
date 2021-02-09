@@ -26,6 +26,7 @@
 ```mermaid
 graph TD;
   os-taskbar --> os-window-tasks
+  os-window-tasks --> ion-icon
   os-desktop --> os-taskbar
   style os-taskbar fill:#f9f,stroke:#333,stroke-width:4px
 ```
