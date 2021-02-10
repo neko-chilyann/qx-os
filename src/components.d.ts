@@ -22,6 +22,27 @@ export namespace Components {
         "img": string;
         "showMode": 'image' | 'color';
     }
+    interface OsContextMenu {
+        /**
+          * 是否悬浮
+          * @return {Promise<boolean>}
+          * @memberof OsContextMenu
+         */
+        "isHover": () => Promise<boolean>;
+        /**
+          * 菜单数据
+          * @type {any[]}
+          * @memberof OsContextMenu
+         */
+        "menus": any[];
+        /**
+          * 显示菜单
+          * @param e
+          * @return {Promise<void>}
+          * @memberof OsContextMenu
+         */
+        "show": (e: MouseEvent) => Promise<void>;
+    }
     interface OsDesktop {
         /**
           * 桌面控制
@@ -75,6 +96,12 @@ declare global {
         prototype: HTMLOsBackgroundImgElement;
         new (): HTMLOsBackgroundImgElement;
     };
+    interface HTMLOsContextMenuElement extends Components.OsContextMenu, HTMLStencilElement {
+    }
+    var HTMLOsContextMenuElement: {
+        prototype: HTMLOsContextMenuElement;
+        new (): HTMLOsContextMenuElement;
+    };
     interface HTMLOsDesktopElement extends Components.OsDesktop, HTMLStencilElement {
     }
     var HTMLOsDesktopElement: {
@@ -125,6 +152,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "os-background-img": HTMLOsBackgroundImgElement;
+        "os-context-menu": HTMLOsContextMenuElement;
         "os-desktop": HTMLOsDesktopElement;
         "os-desktop-panel": HTMLOsDesktopPanelElement;
         "os-main": HTMLOsMainElement;
@@ -150,6 +178,14 @@ declare namespace LocalJSX {
          */
         "img"?: string;
         "showMode"?: 'image' | 'color';
+    }
+    interface OsContextMenu {
+        /**
+          * 菜单数据
+          * @type {any[]}
+          * @memberof OsContextMenu
+         */
+        "menus"?: any[];
     }
     interface OsDesktop {
         /**
@@ -198,6 +234,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "os-background-img": OsBackgroundImg;
+        "os-context-menu": OsContextMenu;
         "os-desktop": OsDesktop;
         "os-desktop-panel": OsDesktopPanel;
         "os-main": OsMain;
@@ -213,6 +250,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "os-background-img": LocalJSX.OsBackgroundImg & JSXBase.HTMLAttributes<HTMLOsBackgroundImgElement>;
+            "os-context-menu": LocalJSX.OsContextMenu & JSXBase.HTMLAttributes<HTMLOsContextMenuElement>;
             "os-desktop": LocalJSX.OsDesktop & JSXBase.HTMLAttributes<HTMLOsDesktopElement>;
             "os-desktop-panel": LocalJSX.OsDesktopPanel & JSXBase.HTMLAttributes<HTMLOsDesktopPanelElement>;
             "os-main": LocalJSX.OsMain & JSXBase.HTMLAttributes<HTMLOsMainElement>;

@@ -6,6 +6,7 @@ import { SystemState } from '../../state';
 import { DesktopController } from '../desktop/desktop-controller';
 import { DesktopOptions, SystemOptions } from '../../options';
 import { SystemHooks } from '../../hooks';
+import { ContextMenuController } from '../context-menu/context-menu-controller';
 
 /**
  * 系统控制器
@@ -26,6 +27,16 @@ export class SystemController extends ControllerBase<SystemStore, SystemState, S
   protected _hooks: SystemHooks;
   get hooks(): SystemHooks {
     return this._hooks;
+  }
+  /**
+   * 右键菜单控制器
+   *
+   * @protected
+   * @memberof SystemController
+   */
+  protected _contextMenu = new ContextMenuController();
+  get contextMenu(): ContextMenuController {
+    return this._contextMenu;
   }
   /**
    * 当前激活桌面
