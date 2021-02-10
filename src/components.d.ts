@@ -63,6 +63,8 @@ export namespace Components {
     }
     interface OsMain {
     }
+    interface OsPopper {
+    }
     interface OsTaskbar {
         /**
           * 桌面控制器
@@ -134,6 +136,12 @@ declare global {
         prototype: HTMLOsMainElement;
         new (): HTMLOsMainElement;
     };
+    interface HTMLOsPopperElement extends Components.OsPopper, HTMLStencilElement {
+    }
+    var HTMLOsPopperElement: {
+        prototype: HTMLOsPopperElement;
+        new (): HTMLOsPopperElement;
+    };
     interface HTMLOsTaskbarElement extends Components.OsTaskbar, HTMLStencilElement {
     }
     var HTMLOsTaskbarElement: {
@@ -171,6 +179,7 @@ declare global {
         "os-desktop-panel": HTMLOsDesktopPanelElement;
         "os-drawer": HTMLOsDrawerElement;
         "os-main": HTMLOsMainElement;
+        "os-popper": HTMLOsPopperElement;
         "os-taskbar": HTMLOsTaskbarElement;
         "os-window": HTMLOsWindowElement;
         "os-window-header-toolbar": HTMLOsWindowHeaderToolbarElement;
@@ -222,6 +231,8 @@ declare namespace LocalJSX {
     }
     interface OsMain {
     }
+    interface OsPopper {
+    }
     interface OsTaskbar {
         /**
           * 桌面控制器
@@ -262,6 +273,7 @@ declare namespace LocalJSX {
         "os-desktop-panel": OsDesktopPanel;
         "os-drawer": OsDrawer;
         "os-main": OsMain;
+        "os-popper": OsPopper;
         "os-taskbar": OsTaskbar;
         "os-window": OsWindow;
         "os-window-header-toolbar": OsWindowHeaderToolbar;
@@ -279,6 +291,7 @@ declare module "@stencil/core" {
             "os-desktop-panel": LocalJSX.OsDesktopPanel & JSXBase.HTMLAttributes<HTMLOsDesktopPanelElement>;
             "os-drawer": LocalJSX.OsDrawer & JSXBase.HTMLAttributes<HTMLOsDrawerElement>;
             "os-main": LocalJSX.OsMain & JSXBase.HTMLAttributes<HTMLOsMainElement>;
+            "os-popper": LocalJSX.OsPopper & JSXBase.HTMLAttributes<HTMLOsPopperElement>;
             "os-taskbar": LocalJSX.OsTaskbar & JSXBase.HTMLAttributes<HTMLOsTaskbarElement>;
             "os-window": LocalJSX.OsWindow & JSXBase.HTMLAttributes<HTMLOsWindowElement>;
             "os-window-header-toolbar": LocalJSX.OsWindowHeaderToolbar & JSXBase.HTMLAttributes<HTMLOsWindowHeaderToolbarElement>;

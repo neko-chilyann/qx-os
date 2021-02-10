@@ -26,6 +26,9 @@ export const config: Config = {
       ],
     },
     { components: ['os-background-img'] },
+    { components: ['os-context-menu'] },
+    { components: ['os-drawer'] },
+    { components: ['os-popper'] },
   ],
   outputTargets: [
     {
