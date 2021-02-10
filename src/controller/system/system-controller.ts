@@ -5,6 +5,7 @@ import { SystemStore } from '../../store';
 import { SystemState } from '../../state';
 import { DesktopController } from '../desktop/desktop-controller';
 import { DesktopOptions, SystemOptions } from '../../options';
+import { SystemHooks } from '../../hooks';
 
 /**
  * 系统控制器
@@ -22,6 +23,10 @@ export class SystemController extends ControllerBase<SystemStore, SystemState, S
    * @memberof SystemController
    */
   private static readonly instance = new SystemController();
+  protected _hooks: SystemHooks;
+  get hooks(): SystemHooks {
+    return this._hooks;
+  }
   /**
    * 当前激活桌面
    *
@@ -49,6 +54,7 @@ export class SystemController extends ControllerBase<SystemStore, SystemState, S
     this._context = new SystemContext();
     this._store = new SystemStore();
     this._state = new SystemState();
+    this._hooks = new SystemHooks();
   }
 
   /**

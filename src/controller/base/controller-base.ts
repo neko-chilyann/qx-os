@@ -1,6 +1,7 @@
 import { forceUpdate } from '@stencil/core';
 import { createUUID } from 'qx-util';
 import { ContextBase } from '../../context/base/context-base';
+import { BaseHooks } from '../../hooks';
 import { IEventsBase } from '../../interface';
 import { OptionsBase } from '../../options';
 import { StateBase } from '../../state';
@@ -76,6 +77,10 @@ export class ControllerBase<
   protected _state: State;
   get state(): State {
     return this._state;
+  }
+  protected _hooks: BaseHooks;
+  get hooks(): BaseHooks {
+    return this._hooks;
   }
 
   /**

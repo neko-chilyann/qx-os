@@ -1,5 +1,6 @@
 import { notNilEmpty } from 'qx-util';
 import { WindowContext } from '../../context';
+import { WindowHooks } from '../../hooks';
 import { IWindowEvents } from '../../interface';
 import { WindowOptions } from '../../options';
 import { WindowState } from '../../state';
@@ -15,14 +16,10 @@ import { DesktopController } from '../desktop/desktop-controller';
  * @extends {ControllerBase}
  */
 export class WindowController extends ControllerBase<WindowStore, WindowState, WindowContext, IWindowEvents> {
-  /**
-   * 窗口上下文
-   *
-   * @protected
-   * @type {WindowContext}
-   * @memberof WindowController
-   */
-  protected readonly ctx: WindowContext;
+  protected _hooks: WindowHooks;
+  get hooks(): WindowHooks {
+    return this._hooks;
+  }
   /**
    * 桌面控制器
    *
@@ -55,6 +52,7 @@ export class WindowController extends ControllerBase<WindowStore, WindowState, W
     this._context = new WindowContext();
     this._store = new WindowStore();
     this._state = new WindowState();
+    this._hooks = new WindowHooks();
   }
 
   /**

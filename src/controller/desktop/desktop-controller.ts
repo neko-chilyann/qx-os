@@ -6,6 +6,7 @@ import { DesktopState } from '../../state';
 import { WindowController } from '../window/window-controller';
 import { DesktopOptions, WindowOptions } from '../../options';
 import { IDesktopEvents } from '../../interface';
+import { DesktopHooks } from '../../hooks';
 
 /**
  * 桌面控制器
@@ -23,6 +24,10 @@ export class DesktopController extends ControllerBase<DesktopStore, DesktopState
    * @memberof DesktopController
    */
   protected sys: SystemController;
+  protected _hooks: DesktopHooks;
+  get hooks(): DesktopHooks {
+    return this._hooks;
+  }
   /**
    * 当前激活窗口
    *
@@ -47,6 +52,7 @@ export class DesktopController extends ControllerBase<DesktopStore, DesktopState
     this._context = new DesktopContext();
     this._store = new DesktopStore();
     this._state = new DesktopState();
+    this._hooks = new DesktopHooks();
   }
 
   /**
