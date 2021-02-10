@@ -127,6 +127,10 @@ export class WindowController extends ControllerBase<WindowStore, WindowState, W
    * @memberof WindowController
    */
   close(): void {
-    this.desktop.destroyWindow(this);
+    const ctx = { isClose: true };
+    this._hooks.close.call(ctx);
+    if (ctx.isClose === true) {
+      this.desktop.destroyWindow(this);
+    }
   }
 }
