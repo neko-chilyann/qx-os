@@ -232,7 +232,7 @@ export class OsWindow implements ComponentInterface {
             <div class='os-window-action-item full-screen' onClick={this.fullScreenWindow}>
               {state.fullScreen ? <ion-icon name='contract' /> : <ion-icon name='expand' />}
             </div>
-            <div class='os-window-action-item close'>
+            <div class='os-window-action-item close' onClick={this.closeWindow}>
               <ion-icon name='close' />
             </div>
           </div>

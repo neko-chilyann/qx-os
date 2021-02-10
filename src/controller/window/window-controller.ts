@@ -124,9 +124,10 @@ export class WindowController extends ControllerBase<WindowStore, WindowState, W
   /**
    * 关闭窗口
    *
+   * @return {*}  {Promise<void>}
    * @memberof WindowController
    */
-  close(): void {
+  async close(): Promise<void> {
     const ctx = { isClose: true };
     this._hooks.close.call(ctx);
     if (ctx.isClose === true) {
