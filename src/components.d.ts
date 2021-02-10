@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DesktopController, WindowController } from "./controller";
+import { Placement } from "@popperjs/core";
 export namespace Components {
     interface OsBackgroundImg {
         /**
@@ -64,6 +65,12 @@ export namespace Components {
     interface OsMain {
     }
     interface OsPopper {
+        /**
+          * 飘窗位置
+          * @type {Placement}
+          * @memberof OsPopper
+         */
+        "position": Placement;
     }
     interface OsTaskbar {
         /**
@@ -232,6 +239,12 @@ declare namespace LocalJSX {
     interface OsMain {
     }
     interface OsPopper {
+        /**
+          * 飘窗位置
+          * @type {Placement}
+          * @memberof OsPopper
+         */
+        "position"?: Placement;
     }
     interface OsTaskbar {
         /**
