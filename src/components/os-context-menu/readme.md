@@ -14,6 +14,16 @@
 
 ## Methods
 
+### `isHover() => Promise<boolean>`
+
+是否悬浮
+
+#### Returns
+
+Type: `Promise<boolean>`
+
+[object Object]
+
 ### `show(e: MouseEvent) => Promise<void>`
 
 显示菜单

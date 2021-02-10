@@ -53,6 +53,14 @@ export namespace Components {
     interface OsDesktopPanel {
         "desktop": DesktopController;
     }
+    interface OsDrawer {
+        /**
+          * 抽屉打开方向
+          * @type {('top' | 'right' | 'bottom' | 'left')}
+          * @memberof OsDrawer
+         */
+        "mode": 'top' | 'right' | 'bottom' | 'left';
+    }
     interface OsMain {
     }
     interface OsTaskbar {
@@ -114,6 +122,12 @@ declare global {
         prototype: HTMLOsDesktopPanelElement;
         new (): HTMLOsDesktopPanelElement;
     };
+    interface HTMLOsDrawerElement extends Components.OsDrawer, HTMLStencilElement {
+    }
+    var HTMLOsDrawerElement: {
+        prototype: HTMLOsDrawerElement;
+        new (): HTMLOsDrawerElement;
+    };
     interface HTMLOsMainElement extends Components.OsMain, HTMLStencilElement {
     }
     var HTMLOsMainElement: {
@@ -155,6 +169,7 @@ declare global {
         "os-context-menu": HTMLOsContextMenuElement;
         "os-desktop": HTMLOsDesktopElement;
         "os-desktop-panel": HTMLOsDesktopPanelElement;
+        "os-drawer": HTMLOsDrawerElement;
         "os-main": HTMLOsMainElement;
         "os-taskbar": HTMLOsTaskbarElement;
         "os-window": HTMLOsWindowElement;
@@ -197,6 +212,14 @@ declare namespace LocalJSX {
     interface OsDesktopPanel {
         "desktop"?: DesktopController;
     }
+    interface OsDrawer {
+        /**
+          * 抽屉打开方向
+          * @type {('top' | 'right' | 'bottom' | 'left')}
+          * @memberof OsDrawer
+         */
+        "mode"?: 'top' | 'right' | 'bottom' | 'left';
+    }
     interface OsMain {
     }
     interface OsTaskbar {
@@ -237,6 +260,7 @@ declare namespace LocalJSX {
         "os-context-menu": OsContextMenu;
         "os-desktop": OsDesktop;
         "os-desktop-panel": OsDesktopPanel;
+        "os-drawer": OsDrawer;
         "os-main": OsMain;
         "os-taskbar": OsTaskbar;
         "os-window": OsWindow;
@@ -253,6 +277,7 @@ declare module "@stencil/core" {
             "os-context-menu": LocalJSX.OsContextMenu & JSXBase.HTMLAttributes<HTMLOsContextMenuElement>;
             "os-desktop": LocalJSX.OsDesktop & JSXBase.HTMLAttributes<HTMLOsDesktopElement>;
             "os-desktop-panel": LocalJSX.OsDesktopPanel & JSXBase.HTMLAttributes<HTMLOsDesktopPanelElement>;
+            "os-drawer": LocalJSX.OsDrawer & JSXBase.HTMLAttributes<HTMLOsDrawerElement>;
             "os-main": LocalJSX.OsMain & JSXBase.HTMLAttributes<HTMLOsMainElement>;
             "os-taskbar": LocalJSX.OsTaskbar & JSXBase.HTMLAttributes<HTMLOsTaskbarElement>;
             "os-window": LocalJSX.OsWindow & JSXBase.HTMLAttributes<HTMLOsWindowElement>;
