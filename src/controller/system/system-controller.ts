@@ -7,6 +7,7 @@ import { DesktopController } from '../desktop/desktop-controller';
 import { DesktopOptions, SystemOptions } from '../../options';
 import { SystemHooks } from '../../hooks';
 import { ContextMenuController } from '../context-menu/context-menu-controller';
+import { OSEvent } from '../../utils';
 
 /**
  * 系统控制器
@@ -15,7 +16,7 @@ import { ContextMenuController } from '../context-menu/context-menu-controller';
  * @class SystemController
  * @extends {ControllerBase}
  */
-export class SystemController extends ControllerBase<SystemStore, SystemState, SystemContext, ISystemEvents> {
+export class SystemController extends ControllerBase {
   /**
    * 唯一实例
    *
@@ -24,20 +25,18 @@ export class SystemController extends ControllerBase<SystemStore, SystemState, S
    * @memberof SystemController
    */
   private static readonly instance = new SystemController();
-  protected _hooks: SystemHooks;
-  get hooks(): SystemHooks {
-    return this._hooks;
-  }
+  readonly evt: OSEvent<ISystemEvents>;
+  readonly context: SystemContext;
+  readonly store: SystemStore;
+  readonly state: SystemState;
+  readonly hooks: SystemHooks;
   /**
    * 右键菜单控制器
    *
-   * @protected
+   * @type {ContextMenuController}
    * @memberof SystemController
    */
-  protected _contextMenu = new ContextMenuController();
-  get contextMenu(): ContextMenuController {
-    return this._contextMenu;
-  }
+  readonly contextMenu: ContextMenuController = new ContextMenuController();
   /**
    * 当前激活桌面
    *
@@ -59,13 +58,11 @@ export class SystemController extends ControllerBase<SystemStore, SystemState, S
     if (SystemController.instance) {
       return SystemController.instance;
     }
-  }
-
-  init(): void {
-    this._context = new SystemContext();
-    this._store = new SystemStore();
-    this._state = new SystemState();
-    this._hooks = new SystemHooks();
+    this.context = new SystemContext();
+    this.store = new SystemStore();
+    this.state = new SystemState();
+    this.hooks = new SystemHooks();
+    this.setOptions(opts);
   }
 
   /**

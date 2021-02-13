@@ -7,6 +7,7 @@ import { WindowController } from '../window/window-controller';
 import { DesktopOptions, WindowOptions } from '../../options';
 import { IDesktopEvents } from '../../interface';
 import { DesktopHooks } from '../../hooks';
+import { OSEvent } from '../../utils';
 
 /**
  * 桌面控制器
@@ -15,7 +16,7 @@ import { DesktopHooks } from '../../hooks';
  * @class DesktopController
  * @extends {ControllerBase}
  */
-export class DesktopController extends ControllerBase<DesktopStore, DesktopState, DesktopContext, IDesktopEvents> {
+export class DesktopController extends ControllerBase {
   /**
    * 系统控制器
    *
@@ -24,10 +25,11 @@ export class DesktopController extends ControllerBase<DesktopStore, DesktopState
    * @memberof DesktopController
    */
   protected sys: SystemController;
-  protected _hooks: DesktopHooks;
-  get hooks(): DesktopHooks {
-    return this._hooks;
-  }
+  readonly evt: OSEvent<IDesktopEvents>;
+  readonly context: DesktopContext;
+  readonly store: DesktopStore;
+  readonly state: DesktopState;
+  readonly hooks: DesktopHooks;
   /**
    * 当前激活窗口
    *
@@ -46,13 +48,11 @@ export class DesktopController extends ControllerBase<DesktopStore, DesktopState
    */
   constructor(opts?: DesktopOptions) {
     super(opts);
-  }
-
-  init(): void {
-    this._context = new DesktopContext();
-    this._store = new DesktopStore();
-    this._state = new DesktopState();
-    this._hooks = new DesktopHooks();
+    this.context = new DesktopContext();
+    this.store = new DesktopStore();
+    this.state = new DesktopState();
+    this.hooks = new DesktopHooks();
+    this.setOptions(opts);
   }
 
   /**

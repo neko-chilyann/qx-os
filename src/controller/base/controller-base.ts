@@ -1,6 +1,6 @@
 import { forceUpdate } from '@stencil/core';
 import { createUUID } from 'qx-util';
-import { ContextBase } from '../../context/base/context-base';
+import { ContextBase } from '../../context';
 import { BaseHooks } from '../../hooks';
 import { IEventsBase } from '../../interface';
 import { OptionsBase } from '../../options';
@@ -14,12 +14,7 @@ import { OSEvent } from '../../utils';
  * @export
  * @class ControllerBase
  */
-export class ControllerBase<
-  Store extends StoreBase,
-  State extends StateBase,
-  Context extends ContextBase,
-  Event extends IEventsBase
-> {
+export class ControllerBase {
   /**
    * 控制器唯一标识
    *
@@ -43,54 +38,47 @@ export class ControllerBase<
     return this._options;
   }
   /**
-   * 系统事件
+   * 事件
    *
+   * @type {OSEvent<IEventsBase>}
    * @memberof ControllerBase
    */
-  protected _evt: OSEvent<Event> = new OSEvent<Event>();
-  get evt(): OSEvent<Event> {
-    return this._evt;
-  }
+  readonly evt: OSEvent<IEventsBase>;
   /**
-   * 桌面上下文
+   * 上下文
    *
    * @memberof ControllerBase
    */
-  protected _context: Context;
-  get context(): Context {
-    return this._context;
-  }
+  readonly context: ContextBase;
   /**
-   * 桌面数据存储
+   * 数据存储
    *
+   * @type {StoreBase}
    * @memberof ControllerBase
    */
-  protected _store: Store;
-  get store(): Store {
-    return this._store;
-  }
+  readonly store: StoreBase;
   /**
    * 桌面状态
    *
+   * @type {StateBase}
    * @memberof ControllerBase
    */
-  protected _state: State;
-  get state(): State {
-    return this._state;
-  }
-  protected _hooks: BaseHooks;
-  get hooks(): BaseHooks {
-    return this._hooks;
-  }
+  readonly state: StateBase;
+  /**
+   * 钩子
+   *
+   * @type {BaseHooks}
+   * @memberof ControllerBase
+   */
+  readonly hooks: BaseHooks;
 
   /**
    * Creates an instance of ControllerBase.
    * @param {OptionsBase} [opts]
    * @memberof ControllerBase
    */
-  constructor(opts?: OptionsBase) {
-    this.init(opts);
-    this.setOptions(opts);
+  constructor(_opts?: OptionsBase) {
+    this.evt = new OSEvent();
   }
 
   /**

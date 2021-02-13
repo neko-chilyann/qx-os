@@ -5,6 +5,7 @@ import { IWindowEvents } from '../../interface';
 import { WindowOptions } from '../../options';
 import { WindowState } from '../../state';
 import { WindowStore } from '../../store';
+import { OSEvent } from '../../utils';
 import { ControllerBase } from '../base/controller-base';
 import { DesktopController } from '../desktop/desktop-controller';
 
@@ -15,11 +16,12 @@ import { DesktopController } from '../desktop/desktop-controller';
  * @class WindowController
  * @extends {ControllerBase}
  */
-export class WindowController extends ControllerBase<WindowStore, WindowState, WindowContext, IWindowEvents> {
-  protected _hooks: WindowHooks;
-  get hooks(): WindowHooks {
-    return this._hooks;
-  }
+export class WindowController extends ControllerBase {
+  readonly evt: OSEvent<IWindowEvents>;
+  readonly context: WindowContext;
+  readonly store: WindowStore;
+  readonly state: WindowState;
+  readonly hooks: WindowHooks;
   /**
    * 桌面控制器
    *
@@ -46,13 +48,11 @@ export class WindowController extends ControllerBase<WindowStore, WindowState, W
    */
   constructor(opts?: WindowOptions) {
     super(opts);
-  }
-
-  init(): void {
-    this._context = new WindowContext();
-    this._store = new WindowStore();
-    this._state = new WindowState();
-    this._hooks = new WindowHooks();
+    this.context = new WindowContext();
+    this.store = new WindowStore();
+    this.state = new WindowState();
+    this.hooks = new WindowHooks();
+    this.setOptions(opts);
   }
 
   /**
@@ -129,7 +129,7 @@ export class WindowController extends ControllerBase<WindowStore, WindowState, W
    */
   async close(): Promise<void> {
     const ctx = { isClose: true };
-    this._hooks.close.call(ctx);
+    this.hooks.close.call(ctx);
     if (ctx.isClose === true) {
       this.desktop.destroyWindow(this);
     }
