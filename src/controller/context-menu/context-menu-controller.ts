@@ -36,12 +36,11 @@ export class ContextMenuController {
   /**
    * 打开右键菜单
    *
-   * @protected
    * @param {MouseEvent} e
    * @param {any[]} menus
    * @memberof ContextMenuController
    */
-  protected open(e: MouseEvent, menus: any[]): void {
+  open(e: MouseEvent, menus: any[]): void {
     this.close();
     this.addEvents();
     this.container = document.createElement('os-context-menu');
@@ -53,39 +52,13 @@ export class ContextMenuController {
   /**
    * 关闭右键菜单
    *
-   * @protected
    * @memberof ContextMenuController
    */
-  protected close(): void {
+  close(): void {
     if (this.container) {
       document.body.removeChild(this.container);
       this.container = undefined;
     }
     this.removeEvents();
-  }
-
-  /**
-   * 注册DOM右键菜单
-   *
-   * @param {HTMLElement} dom
-   * @param {any[]} menus
-   * @memberof ContextMenuController
-   */
-  register(dom: HTMLElement, menus: any[]): void {
-    dom.oncontextmenu = (e: MouseEvent): void => {
-      e.preventDefault();
-      e.stopPropagation();
-      this.open(e, menus);
-    };
-  }
-
-  /**
-   * 取消右键菜单注册
-   *
-   * @param {HTMLElement} dom
-   * @memberof ContextMenuController
-   */
-  unregister(dom: HTMLElement): void {
-    dom.oncontextmenu = undefined;
   }
 }

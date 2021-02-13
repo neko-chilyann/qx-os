@@ -14,7 +14,7 @@ export class DrawerController {
    */
   private drawers: HTMLOsDrawerElement[] = [];
 
-  open(): void {
+  async open() {
     const container = document.createElement('os-drawer');
     container.zIndex = sys.store.zIndexIncrease();
     document.body.appendChild(container);

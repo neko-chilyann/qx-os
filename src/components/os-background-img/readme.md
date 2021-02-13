@@ -19,12 +19,14 @@
 ### Used by
 
  - [os-desktop](../os-desktop)
+ - [os-drawer](../os-drawer)
  - [os-window](../os-window)
 
 ### Graph
 ```mermaid
 graph TD;
   os-desktop --> os-background-img
+  os-drawer --> os-background-img
   os-window --> os-background-img
   style os-background-img fill:#f9f,stroke:#333,stroke-width:4px
 ```

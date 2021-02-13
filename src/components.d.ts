@@ -70,6 +70,27 @@ export namespace Components {
     interface OsMain {
     }
     interface OsPopper {
+        /**
+          * 展示位置
+          * @default 'auto'
+          * @type {('top' | 'right' | 'bottom' | 'left' | 'auto' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end')}
+          * @memberof OsPopper
+         */
+        "position": | 'top'
+    | 'right'
+    | 'bottom'
+    | 'left'
+    | 'auto'
+    | 'auto-start'
+    | 'auto-end'
+    | 'top-start'
+    | 'top-end'
+    | 'bottom-start'
+    | 'bottom-end'
+    | 'right-start'
+    | 'right-end'
+    | 'left-start'
+    | 'left-end';
     }
     interface OsTaskbar {
         /**
@@ -244,6 +265,27 @@ declare namespace LocalJSX {
     interface OsMain {
     }
     interface OsPopper {
+        /**
+          * 展示位置
+          * @default 'auto'
+          * @type {('top' | 'right' | 'bottom' | 'left' | 'auto' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end')}
+          * @memberof OsPopper
+         */
+        "position"?: | 'top'
+    | 'right'
+    | 'bottom'
+    | 'left'
+    | 'auto'
+    | 'auto-start'
+    | 'auto-end'
+    | 'top-start'
+    | 'top-end'
+    | 'bottom-start'
+    | 'bottom-end'
+    | 'right-start'
+    | 'right-end'
+    | 'left-start'
+    | 'left-end';
     }
     interface OsTaskbar {
         /**

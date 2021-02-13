@@ -222,7 +222,7 @@ export class OsWindow implements ComponentInterface {
         style={this.calcStyle()}
       >
         <os-background-img img={this.controller.store.backgroundImage} />
-        <div class='os-window-header' onMouseDown={this.active} ref={ref => sys.contextMenu.register(ref, [])}>
+        <div class='os-window-header' onMouseDown={this.active}>
           <div class='drag-handle' ref={ref => (this.dragHandle = ref)} />
           <os-window-title caption={this.controller.store.title} />
           <div class='os-window-actions'>
