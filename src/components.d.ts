@@ -59,7 +59,13 @@ export namespace Components {
           * @type {('top' | 'right' | 'bottom' | 'left')}
           * @memberof OsDrawer
          */
-        "mode": 'top' | 'right' | 'bottom' | 'left';
+        "position": 'top' | 'right' | 'bottom' | 'left';
+        /**
+          * 显示层级
+          * @type {number}
+          * @memberof OsDrawer
+         */
+        "zIndex": number;
     }
     interface OsMain {
     }
@@ -227,7 +233,13 @@ declare namespace LocalJSX {
           * @type {('top' | 'right' | 'bottom' | 'left')}
           * @memberof OsDrawer
          */
-        "mode"?: 'top' | 'right' | 'bottom' | 'left';
+        "position"?: 'top' | 'right' | 'bottom' | 'left';
+        /**
+          * 显示层级
+          * @type {number}
+          * @memberof OsDrawer
+         */
+        "zIndex"?: number;
     }
     interface OsMain {
     }

@@ -88,7 +88,7 @@ export class SystemStore extends StoreBase {
    * @memberof SystemStore
    */
   zIndexIncrease(): number {
-    this.zIndex += 10;
+    this.zIndex += 30;
     return this.zIndex;
   }
 
@@ -99,7 +99,7 @@ export class SystemStore extends StoreBase {
    * @memberof SystemStore
    */
   zIndexReduce(): number {
-    this.zIndex -= 10;
+    this.zIndex -= 30;
     return this.zIndex;
   }
 }

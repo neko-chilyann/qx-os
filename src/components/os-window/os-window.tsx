@@ -237,7 +237,12 @@ export class OsWindow implements ComponentInterface {
             </div>
           </div>
         </div>
-        <div class='os-window-content'>内容</div>
+        <div class='os-window-content'>
+          内容
+          <button onClick={() => {
+            sys.drawer.open();
+          }}>打开飘窗</button>
+        </div>
       </Host>
     );
   }

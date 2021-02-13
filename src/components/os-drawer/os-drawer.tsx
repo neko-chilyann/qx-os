@@ -18,9 +18,24 @@ export class OsDrawer {
    * @memberof OsDrawer
    */
   @Prop()
-  mode: 'top' | 'right' | 'bottom' | 'left' = 'right';
+  position: 'top' | 'right' | 'bottom' | 'left' = 'right';
+  /**
+   * 显示层级
+   *
+   * @type {number}
+   * @memberof OsDrawer
+   */
+  @Prop()
+  zIndex: number;
 
   render() {
-    return <Host class='os-drawer'>抽屉</Host>;
+    return (
+      <Host class='os-drawer-container' style={{ 'z-index': (this.zIndex - 1) as any }}>
+        <div class={{ 'os-drawer': true, [this.position]: true }} style={{ 'z-index': this.zIndex as any }}>
+          <os-background-img img={sys.store.backgroundImage} />
+          抽屉
+        </div>
+      </Host>
+    );
   }
 }

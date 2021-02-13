@@ -8,6 +8,7 @@ import { DesktopOptions, SystemOptions } from '../../options';
 import { SystemHooks } from '../../hooks';
 import { ContextMenuController } from '../context-menu/context-menu-controller';
 import { OSEvent } from '../../utils';
+import { DrawerController } from '../drawer/drawer-controller';
 
 /**
  * 系统控制器
@@ -37,6 +38,13 @@ export class SystemController extends ControllerBase {
    * @memberof SystemController
    */
   readonly contextMenu: ContextMenuController = new ContextMenuController();
+  /**
+   * 抽屉展示控制器
+   *
+   * @type {DrawerController}
+   * @memberof SystemController
+   */
+  readonly drawer: DrawerController = new DrawerController();
   /**
    * 当前激活桌面
    *

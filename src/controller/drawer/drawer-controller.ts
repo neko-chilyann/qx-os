@@ -4,4 +4,20 @@
  * @export
  * @class DrawerController
  */
-export class DrawerController {}
+export class DrawerController {
+  /**
+   * 抽屉容器列表
+   *
+   * @private
+   * @type {HTMLOsDrawerElement[]}
+   * @memberof DrawerController
+   */
+  private drawers: HTMLOsDrawerElement[] = [];
+
+  open(): void {
+    const container = document.createElement('os-drawer');
+    container.zIndex = sys.store.zIndexIncrease();
+    document.body.appendChild(container);
+    this.drawers.push(container);
+  }
+}
