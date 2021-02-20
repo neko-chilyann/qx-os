@@ -129,7 +129,7 @@ export class WindowController extends ControllerBase {
    */
   async close(): Promise<void> {
     const ctx = { isClose: true };
-    this.hooks.close.call(ctx);
+    await this.hooks.close.call(ctx);
     if (ctx.isClose === true) {
       this.desktop.destroyWindow(this);
     }
