@@ -18,8 +18,8 @@ export interface IDesktopEvents {
   /**
    * 窗口销毁
    *
-   * @type {void}
+   * @type {WindowController}
    * @memberof IDesktopEvents
    */
-  destroyWindow: void;
+  destroyWindow: WindowController;
 }
